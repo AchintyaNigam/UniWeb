@@ -55,7 +55,7 @@ body{
 }
 
 .logo{
-  margin-left: 50vw;
+  margin-left: auto;
   flex-grow: 0;
   padding: 5%;
   scale: 5%;
