@@ -12,51 +12,9 @@ body{
   background-size: 100vw;
 }
 
+
 .container{
   margin: 0;
   --backdrop-filter: brightness(90);
 
-}
-
-.loginContainer{
-  padding-top: 8vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-
-.Navbar{
-  z-index: 1000;
-  position: fixed;
-  top: 0;
-  width: 100vw;
-  background: linear-gradient(to left top, var(--primary), var(--secondary));
-  height: 8vh;
-  display: flex;
-  align-items: center;
-  box-shadow: 0 0.2vh 1vh 0.2vh var(--dark);
-}
-
-.Name{
-  font-size: large;
-  letter-spacing: 0.5em;
-  color: var(--light);
-  margin-right: 0;
-  padding: 5%;
-  font-weight: bold;
-  transition: 0.5s;
-  flex-grow: 0;
-}
-
-.Name:hover{
-  transform: scale(1.05);
-  cursor: pointer;
-}
-
-.logo{
-  margin-left: auto;
-  flex-grow: 0;
-  padding: 5%;
-  scale: 5%;
 }

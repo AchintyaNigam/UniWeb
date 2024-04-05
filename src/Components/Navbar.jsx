@@ -1,5 +1,6 @@
 import React from "react";
 import favicon from "./favicon.png"
+import './Navbar.css'
 export default function Navbar  ()
 {
      

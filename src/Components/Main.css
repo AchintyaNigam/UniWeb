@@ -1,0 +1,13 @@
+:root{
+    --primary: #0d6efd;
+    --secondary:  #1fddff;
+    --textFields: #d7fcfe;
+    --light: #fff;
+    --dark: #000;
+  }
+.loginContainer{
+    padding-top: 8vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

@@ -1,0 +1,42 @@
+:root{
+    --primary: #0d6efd;
+    --secondary:  #1fddff;
+    --textFields: #d7fcfe;
+    --light: #fff;
+    --dark: #000;
+  }
+.Navbar{
+    z-index: 1000;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: linear-gradient(to left top, var(--primary), var(--secondary));
+    height: 8vh;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 0.2vh 1vh 0.2vh var(--dark);
+  }
+  
+  .Name{
+    font-size: large;
+    letter-spacing: 0.5em;
+    color: var(--light);
+    margin-right: 0;
+    padding: 5%;
+    font-weight: bold;
+    transition: 0.5s;
+    flex-grow: 0;
+  }
+  
+  .Name:hover{
+    transform: scale(1.05);
+    cursor: pointer;
+  }
+  
+  .logo{
+    
+    padding-left: 90%;
+    flex-grow: 0;
+    
+    scale: 5%;
+  }
