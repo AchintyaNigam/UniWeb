@@ -1,0 +1,58 @@
+.signUpPage{
+    display: flex;
+    flex: 1;
+    overflow: scroll;
+}
+
+.signUpPage > div{
+    flex: 1;
+    padding: 40px;
+}
+
+.details{
+    background-color: var(--third);
+    color: var(--light);
+    width: 120vw;
+    height: 100%;
+}
+
+.graphics{
+    width: 120vw;
+    background-image: url(./../assets/student.webp);
+    background-size: cover;
+}
+
+.graphics2{
+    width: 120vw;
+    background-image: url(./../assets/professor.jpg);
+    background-size: cover;
+}
+
+@media (max-width: 768px) {
+    .signUpPage {
+        flex-direction: column;
+    }
+
+    .details {
+        width: 87vw;
+    }
+    
+    .graphics{
+        background-size: contain;
+        background-repeat: none;
+    }
+
+    .graphics2{
+        visibility: hidden;
+        background-size: contain;
+        background-repeat: none;
+    }
+
+    #logo2{
+        scale: 10%;
+    }
+}
+#logo2{
+    position: relative;
+}
+

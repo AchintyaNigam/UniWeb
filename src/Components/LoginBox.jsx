@@ -35,7 +35,7 @@ export default function LoginBox()
             </div>
             
             <div className="signUp">
-                <a href="#">SignUp</a> 
+                <a id="signUpButton" href="signup">SignUp</a> 
             </div>  
 
             <div class="inputBox" id="submit"> 

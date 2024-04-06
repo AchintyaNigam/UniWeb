@@ -1,5 +1,5 @@
 import React from "react";
-import favicon from "./favicon.png"
+import favicon from "./../assets/logo2.png"
 import './Navbar.css'
 export default function Navbar  ()
 {

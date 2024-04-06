@@ -1,10 +1,51 @@
 .signUpContainer{
-    z-index: 20;
+    background-color: var(--light);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vw;
+    max-width: 550px;
+    max-height :550px;
+    border-radius: 5%;
+    opacity: 80%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#question{
+    padding: 5%;
+    text-align: center;
+}
+
+.buttonsContainer{
+    padding: 1%;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--light);
-    color: black;
-    margin-top: 8vh;
+}
+
+.roleButton{
+    background-color: var(--secondary);
+    color: var(--light);
+    border-radius: 5%;
+    margin: 2vw;
+    font-size: larger;
+    font-weight: 1000;
+    letter-spacing: 2px;
     
+    padding: 8% 10% 8% 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+}
+
+.roleButton:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+    box-shadow: 0 0 10px 3px var(--dark);
 }

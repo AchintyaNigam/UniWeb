@@ -13,7 +13,9 @@
     background: linear-gradient(to left top, var(--primary), var(--secondary));
     height: 8vh;
     display: flex;
+  
     align-items: center;
+  
     box-shadow: 0 0.2vh 1vh 0.2vh var(--dark);
   }
   
@@ -22,7 +24,7 @@
     letter-spacing: 0.5em;
     color: var(--light);
     margin-right: 0;
-    padding: 5%;
+    padding: 2%;
     font-weight: bold;
     transition: 0.5s;
     flex-grow: 0;
@@ -34,9 +36,9 @@
   }
   
   .logo{
-    
-    padding-left: 90%;
+    transform-origin: 55vw ;
+    margin-left: auto;
     flex-grow: 0;
     
-    scale: 5%;
+    scale: 9%;
   }
