@@ -1,0 +1,75 @@
+.homeMain{
+    padding-top: 8vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--light);
+}
+
+.homeMain > span{
+    color: var(--dark);
+    font-family: 'Calligraffitti', cursive;
+    text-shadow: -15px 5px 20px #ced0d3;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    font-size: 13rem;
+    color: #F9f1cc;
+    text-shadow: 5px 5px 0px #FFB650, 
+    10px 10px 0px #FFD662, 
+    15px 15px 0px  #FF80BF, 
+    20px 20px 0px #EF5097, 
+    25px 25px 0px #6868AC, 
+    30px 30px 0px #90B1E0;
+}
+.homeButtonsContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+}
+.homeButtons{
+    padding: 20%;
+    display: flex;
+    font-size: x-large;
+    text-align: center;
+    max-width: 100px;
+    border-radius: 10%;
+    margin: 20%;
+    justify-content: center;
+    align-items: center;
+    color: var(--light);
+    background-color: var(--third);
+    transition: 0.5s;
+}
+
+.homeButtons:hover{
+    transform: scale(1.1);
+    box-shadow: 0 0 20px var(--dark);
+    cursor: pointer;
+}
+
+@media (max-width: 733px)
+{
+    .homeMain > span{
+        padding-top: 10vh;
+        font-size: 8rem;
+    }
+
+    .homeButtonsContainer{
+        flex-direction: column;
+        margin-top: 8%;
+    }
+
+    .homeButtons{
+        width: 100vw;
+        height: 2vh;
+        max-width: 9000vw;
+        margin: 0;
+    }
+}
