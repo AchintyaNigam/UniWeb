@@ -1,6 +1,6 @@
 import React from "react";
 
-import Navbar from "./Navbar";
+import NavbarTeacher from "./NavbarTeacher";
 
 import './Home.css'
 
@@ -8,7 +8,7 @@ export default function HomeTeacher()
 {
     return(
         <>
-            <Navbar />
+            <NavbarTeacher />
         <div className="homeMain">
             <span>Welcome</span>
             <div className="homeButtonsContainer">

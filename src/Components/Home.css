@@ -57,18 +57,21 @@
 @media (max-width: 733px)
 {
     .homeMain > span{
+        padding-left: 0px;
         padding-top: 10vh;
         font-size: 8rem;
     }
 
     .homeButtonsContainer{
         flex-direction: column;
+        gap: 2rem;
         margin-top: 8%;
     }
 
     .homeButtons{
-        width: 100vw;
+        width: 60vw;
         height: 2vh;
+        border-radius: 2%;
         max-width: 9000vw;
         margin: 0;
     }

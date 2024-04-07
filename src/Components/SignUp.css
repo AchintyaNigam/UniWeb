@@ -29,7 +29,7 @@
 }
 
 .roleButton{
-    background-color: var(--secondary);
+    background-color: var(--third);
     color: var(--light);
     border-radius: 5%;
     margin: 2vw;

@@ -1,6 +1,6 @@
 import React from "react";
 
-import Navbar from "./Navbar";
+import NavbarStudent from "./NavbarStudent";
 
 import './Home.css'
 
@@ -8,12 +8,12 @@ export default function HomeStudent()
 {
     return(
         <>
-            <Navbar />
+            <NavbarStudent />
         <div className="homeMain">
             <span>Welcome</span>
             <div className="homeButtonsContainer">
-            <div className="homeButtons">Profile</div>
-            <div className="homeButtons">Marks</div>
+            <div className="homeButtons"><a href="/profile">Profile</a></div>
+            <div className="homeButtons"><a href="/marksstudent">Marks</a></div>
             </div>
             
         </div>

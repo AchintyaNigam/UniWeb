@@ -31,6 +31,7 @@
 @media (max-width: 768px) {
     .signUpPage {
         flex-direction: column;
+        overflow-x: hidden;
     }
 
     .details {
@@ -38,14 +39,11 @@
     }
     
     .graphics{
-        background-size: contain;
-        background-repeat: none;
+        display: none;
     }
 
     .graphics2{
-        visibility: hidden;
-        background-size: contain;
-        background-repeat: none;
+        display: none;
     }
 
     #logo2{
@@ -56,3 +54,13 @@
     position: relative;
 }
 
+@media (max-width: 1607px)
+{
+    .graphics{
+        display: none;
+    }
+
+    .graphics2{
+        display: none;
+    }
+}

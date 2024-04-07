@@ -120,3 +120,9 @@
   {
     opacity: 0.6;
   }
+
+  @media (max-width: 768px){
+    .inputBox{
+      width: 80%;
+    }
+  }

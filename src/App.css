@@ -23,9 +23,11 @@ body{
 
 a {
   --s: 0.1em;   /* the thickness of the line */
-  --c: #2c4bff; /* the color */
-  
-  color: #0000;
+  --c: var(--secondary); /* the color */
+  color: var(--light);
+  text-decoration: none;
+  padding: .25rem;
+  font-weight: 700;
   padding-bottom: var(--s);
   background: 
     linear-gradient(90deg,var(--c) 50%,#000 0) calc(100% - var(--_p,0%))/200% 100%,
@@ -34,4 +36,6 @@ a {
           background-clip: text,padding-box;
   transition: 0.5s;
 }
+
 a:hover {--_p: 100%}
+
