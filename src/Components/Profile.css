@@ -1,21 +1,60 @@
 .Profile{
-    margin-top: 8vh;
+    margin-top: 10vh;
+    padding-top: 10vh;
+    overflow: scroll;
 }
 .profileDisplay{
-    background-color: var(--third);
-    color: var(--light);
+    background-color: var(--light);
+    color: var(--dark);
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 90vw;
     max-width: 550px;   
-    max-height :550px;
     border-radius: 2%;
     opacity: 80%;
     overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: left;
+    padding: 1%;
+}
+
+.profileDisplay p{
+    font-size: medium;
+}
+.Headings{
+    direction: flex;
+    justify-content: space-between; /* Align items horizontally */
     align-items: center;
+}
+.Headings SubHeading{
+    font-size: xx-large;
+    font-style: bold;
+    flex-grow: 0;
+}
+
+.Headings img{
+    scale: 70%;
+    border-radius: 100%;
+    transition: 0.2s;
+}
+
+.Headings img:hover{
+    cursor: pointer;
+    box-shadow: 0 7px 14px;
+}
+
+
+
+
+.profileDisplay {
+    font-size: xx-large;
+}
+
+.profileDisplay hr{
+    color: var(--light);
+    width: 100%;
 }

@@ -4,6 +4,8 @@ import NavbarStudent from "./NavbarStudent";
 import NavbarTeacher from "./NavbarTeacher";
 import Forbidden from "./Forbidden";
 
+import EditButton from "./../assets/edit_button.png";
+
 import './Profile.css';
 
 export default function Profile() {
@@ -22,7 +24,9 @@ export default function Profile() {
                         fetchStudentProfile(userId, token),
                         fetchStudentAddress(userId, token)
                     ]);
+                    
                     setProfileData({ mainProfile, studentProfile, address });
+                    console.log(profileData);
                 } else if (role === "teacher") {
                     const [mainProfile, teacherProfile] = await Promise.all([
                         fetchTeacherMainProfile(userId, token),
@@ -50,21 +54,66 @@ export default function Profile() {
 
     if (loading) {
         // Show loading spinner or message while data is being fetched
-        return <div className="popup">Loading...</div>;
+        return <div className="popup"><h1>Loading...</h1></div>;
     }
     return (
         <>
             {role === "student" ? <NavbarStudent /> : <NavbarTeacher />}
             <div className="Profile">
-                {role === "student" ? 
-                <div className="profileDisplay">
-                <h1>Profile</h1>
-                <hr></hr>
-                <p><strong>Name:</strong> {profileData.name}</p>
-                <p><strong>Email:</strong> {profileData.email}</p>
+            {role === "student" ? (
+        profileData ? (
+        <div className="profileDisplay">
+            <div className="Headings">
+                <span className="SubHeading"><b>Profile</b><img src={EditButton}></img></span>
 
-                </div>
-                :<div className="profileDisplay"></div>}
+            </div>
+            <hr />
+            
+            <p><strong>Name:</strong> {profileData.mainProfile.fullName}</p>
+            <p><strong>Email:</strong> {profileData.mainProfile.email}</p>
+            <p><strong>DOB:</strong> {profileData.mainProfile.birthdate}</p>
+            <div className="Headings">
+                <span className="SubHeading"><b>Student Info</b><img src={EditButton}></img></span>
+                
+            </div>
+            <hr />
+            <p><strong>Roll Number:</strong> {profileData.studentProfile.rollNumber}</p>
+            <p><strong>Branch:</strong> {profileData.studentProfile.branch}</p>
+            <div className="Headings">
+                <span className="subHeading"><b>Address</b><img src={EditButton}></img></span>
+            </div>
+            <hr />
+            <p><strong>Street:</strong> {profileData.address.street}</p>
+            <p><strong>City:</strong> {profileData.address.city}</p>
+            <p><strong>Zip Code:</strong> {profileData.address.zipCode}</p>
+
+            
+        </div>
+    ) : (
+        <div className="popup">Loading profile data...</div>
+    )
+) : (
+    profileData ? (
+        <div className="profileDisplay">
+            <div className="Headings">
+                <span className="SubHeading"><b>Profile</b><img src={EditButton}></img></span>
+            </div>
+            <hr />
+            
+            <p><strong>Name:</strong> {profileData.mainProfile.fullName}</p>
+            <p><strong>Email:</strong> {profileData.mainProfile.email}</p>
+            <p><strong>DOB:</strong> {profileData.mainProfile.birthdate}</p>
+            <div className="Headings">
+                <span className="SubHeading"><b>Teacher Info</b><img src={EditButton}></img></span>
+            </div>
+            <hr />
+            <p><strong>Department:</strong> {profileData.teacherProfile.department}</p>
+            
+        </div>
+    ) : (
+        <div className="popup">Loading profile data...</div>
+    )
+)}
             </div>
         </>
     );
@@ -74,20 +123,19 @@ export default function Profile() {
 async function fetchStudentMainProfile(userId, token) {
     const response = await fetch(`http://localhost:8080/api/profile/get/${userId}`, {
         headers: {
-            Authorization: `${token}`
+            Authorization: `Bearer ${token}`
         }
     });
     if (!response.ok) {
         throw new Error('Failed to fetch student main profile');
     }
-    console.log(response);
     return await response.json();
 }
 
 async function fetchStudentProfile(userId, token) {
     const response = await fetch(`http://localhost:8080/api/student/profile/get/${userId}`, {
         headers: {
-            Authorization: `${token}`
+            Authorization: `Bearer ${token}`
         }
     });
     if (!response.ok) {
@@ -99,7 +147,7 @@ async function fetchStudentProfile(userId, token) {
 async function fetchStudentAddress(userId, token) {
     const response = await fetch(`http://localhost:8080/api/student/address/get/${userId}`, {
         headers: {
-            Authorization: `${token}`
+            Authorization: `Bearer ${token}`
         }
     });
     if (!response.ok) {
@@ -111,7 +159,7 @@ async function fetchStudentAddress(userId, token) {
 async function fetchTeacherMainProfile(userId, token) {
     const response = await fetch(`http://localhost:8080/api/profile/get/${userId}`, {
         headers: {
-            Authorization: `${token}`
+            Authorization: `Bearer ${token}`
         }
     });
     if (!response.ok) {
@@ -123,7 +171,7 @@ async function fetchTeacherMainProfile(userId, token) {
 async function fetchTeacherProfile(userId, token) {
     const response = await fetch(`http://localhost:8080/api/teacher/profile/get/${userId}`, {
         headers: {
-            Authorization: `${token}`
+            Authorization: `Bearer ${token}`
         }
     });
     if (!response.ok) {
