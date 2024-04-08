@@ -1,8 +1,12 @@
 import React from "react";
-import favicon from "./../assets/logo2.png"
+import { useGlobalContext } from './../GlobalContext';
 import './Navbar.css'
 export default function Navbar  ()
 {
+    const { updateGlobalState } = useGlobalContext();
+    function logout(){
+        updateGlobalState('','','');
+    }
      
     return (
         <div className="Navbar">
@@ -18,7 +22,7 @@ export default function Navbar  ()
                     <a href="/allstudentprofiles">Students</a>
                 </li>
             </ul>
-            <a href="/" className="logout2">Logout</a>
+            <a href="/" className="logout2"onClick={logout}>Logout</a>
         </div>
     );
         

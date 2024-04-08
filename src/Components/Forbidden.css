@@ -1,0 +1,30 @@
+.ErrorContainer{
+    background-color: var(--third);
+    color: var(--light);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vw;
+    max-width: 550px;   
+    max-height :550px;
+    border-radius: 2%;
+    opacity: 80%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.ErrorContainer h1{
+    text-align: center;
+    color: var(--light);
+    font-size: xxx-large;
+}
+
+.ErrorContainer h2{
+    text-align: center;
+    color: var(--light);
+    font-size: xx-large;
+}

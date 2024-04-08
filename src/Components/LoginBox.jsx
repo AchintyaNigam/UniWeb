@@ -1,19 +1,82 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+import { useGlobalContext } from './../GlobalContext';
 import './LoginBox.css'
 
-export default function LoginBox()
+export default function LoginBox(token, )
 {
 
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
+    const [loggingIn, setLoggingIn] = useState(false); // State to track login request status
+
+    const { updateGlobalState } = useGlobalContext();
+    const navigate = useNavigate();
+
+    const handleLogin = async () => {
+        setLoggingIn(true); // Set loggingIn state to true when login request starts
+        try {
+            // Perform login request to server
+            const { token, role, userId } = await login(username, password);
+            updateGlobalState(token, role, userId);
+            // Redirect user based on role
+            if (role === 'student') {
+                // Redirect to student home page
+                navigate('/homestudent');
+            } else if (role === 'teacher') {
+                // Redirect to teacher home page
+                navigate('/hometeacher');
+            } else {
+                // Handle other roles if needed
+                console.error('Unknown role:', role);
+            }
+        } catch (error) {
+            // Handle error, e.g., display error message
+            console.error("Login failed:", error);
+            alert("Login failed. Please try again.");
+
+        } finally {
+            setLoggingIn(false); // Reset loggingIn state when login request completes
+        }
+    };
+
+    async function login(username, password) {
+        try {
+            const response = await fetch('http://localhost:8080/api/login/post', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
+            });
+    
+            if (!response.ok) {
+                throw new Error('Login failed');
+            }
+    
+            const data = await response.json();
+            const { token, role, userId } = data; // Assuming the server responds with role and userId
+            return { token, role, userId };
+        } catch (error) {
+            throw new Error('Login failed: ' + error.message);
+        }
+    }
+    
     return (
+        <>
+            {loggingIn && (
+                <div className="popup">
+                    <p>Logging in. <b>Do not</b> close this tab.</p>
+                </div>
+            )}
         <div className="loginBox">
+      
             <div className="loginText">
                 <h1>Login</h1>
             </div>
           
             <div className="loginFields">
-                <div class="inputBox"> 
+                <div className="inputBox"> 
                     <input 
                         type="text" 
                         required 
@@ -23,7 +86,7 @@ export default function LoginBox()
                     <label htmlFor="username"><i>Username</i></label>
                 </div> 
 
-                <div class="inputBox"> 
+                <div className="inputBox"> 
                     <input 
                         type="password" 
                         required 
@@ -38,9 +101,10 @@ export default function LoginBox()
                 <a id="signUpButton" href="signup">SignUp</a> 
             </div>  
 
-            <div class="inputBox" id="submit"> 
-                <button type="submit">Login</button>
+            <div className="inputBox" id="submit"> 
+                <button type="submit" onClick={handleLogin}>Login</button>
             </div>  
         </div>
+        </>
     );
 }

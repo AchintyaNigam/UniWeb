@@ -11,7 +11,7 @@ function App() {
       <Navbar />
       <Main />
     </div>
-  )
+  );
 }
 
 export default App;

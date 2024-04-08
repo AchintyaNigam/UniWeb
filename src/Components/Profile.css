@@ -1,0 +1,21 @@
+.Profile{
+    margin-top: 8vh;
+}
+.profileDisplay{
+    background-color: var(--third);
+    color: var(--light);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90vw;
+    max-width: 550px;   
+    max-height :550px;
+    border-radius: 2%;
+    opacity: 80%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
