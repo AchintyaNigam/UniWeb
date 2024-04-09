@@ -98,7 +98,7 @@ export default function LoginBox(token, )
             </div>
             
             <div className="signUp">
-                <a id="signUpButton" href="signup">SignUp</a> 
+                <a className="link" id="signUpButton" href="signup">SignUp</a> 
             </div>  
 
             <div className="inputBox" id="submit"> 

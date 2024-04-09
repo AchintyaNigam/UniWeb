@@ -10,16 +10,16 @@ export default function Navbar  ()
      
     return (
         <div className="Navbar">
-            <a href="/homestudent"><span className="Name">UniWeb</span></a>
+            <a  className="link" href="/homestudent"><span className="Name">UniWeb</span></a>
             <ul>
                 <li>
-                    <a href="/profile">Profile</a>
+                    <a className="link" href="/profile">Profile</a>
                 </li>
                 <li>
-                    <a href="/marksstudent">Marks</a>
+                    <a className="link" href="/marksstudent">Marks</a>
                 </li>
             </ul>
-            <a href="/" className="logout" onClick={logout}>Logout</a>
+            <a className="link" href="/" id="logout" onClick={logout}>Logout</a>
         </div>
     );
         

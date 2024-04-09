@@ -3,6 +3,14 @@
     padding-top: 10vh;
     overflow: scroll;
 }
+
+.Profile a{
+    text-decoration: none !important; 
+}
+
+.Profile a:hover{
+    text-decoration: none !important; 
+}
 .profileDisplay{
     background-color: var(--light);
     color: var(--dark);

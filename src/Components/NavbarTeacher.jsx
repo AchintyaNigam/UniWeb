@@ -10,19 +10,19 @@ export default function Navbar  ()
      
     return (
         <div className="Navbar">
-            <a href="/hometeacher"><span className="Name">UniWeb</span></a>
+            <a  className="link" href="/hometeacher"><span className="Name">UniWeb</span></a>
             <ul>
                 <li>
-                    <a href="/profile">Profile</a>
+                    <a className="link" href="/profile">Profile</a>
                 </li>
                 <li>
-                    <a href="/marksteacher">Marks</a>
+                    <a className="link"  href="/marksteacher">Marks</a>
                 </li>
                 <li>
-                    <a href="/allstudentprofiles">Students</a>
+                    <a className="link"  href="/allstudentprofiles">Students</a>
                 </li>
             </ul>
-            <a href="/" className="logout2"onClick={logout}>Logout</a>
+            <a className="link" href="/" id="logout2"onClick={logout}>Logout</a>
         </div>
     );
         

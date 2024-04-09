@@ -12,6 +12,7 @@ import MarksStudent from './Components/MarksStudent.jsx'
 import MarksTeacher from './Components/MarksTeacher.jsx'
 import AllStudentProfiles from './Components/AllStudentProfiles.jsx'
 import Forbidden from './Components/Forbidden.jsx'
+import EditProfile from './Components/EditProfile.jsx'
 
 import './App.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
@@ -29,7 +30,8 @@ const router = createBrowserRouter([
   { path: '/marksstudent', element: <MarksStudent /> },
   { path: '/marksteacher', element: <MarksTeacher /> },
   { path: '/allstudentprofiles', element: <AllStudentProfiles /> },
-  { path: '/forbidden', element: <Forbidden /> }
+  { path: '/forbidden', element: <Forbidden /> },
+  { path: '/editprofile', element: <EditProfile />}
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

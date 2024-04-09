@@ -4,6 +4,8 @@ import NavbarStudent from "./NavbarStudent";
 import NavbarTeacher from "./NavbarTeacher";
 import Forbidden from "./Forbidden";
 
+
+
 import EditButton from "./../assets/edit_button.png";
 
 import './Profile.css';
@@ -26,7 +28,6 @@ export default function Profile() {
                     ]);
                     
                     setProfileData({ mainProfile, studentProfile, address });
-                    console.log(profileData);
                 } else if (role === "teacher") {
                     const [mainProfile, teacherProfile] = await Promise.all([
                         fetchTeacherMainProfile(userId, token),
@@ -64,7 +65,7 @@ export default function Profile() {
         profileData ? (
         <div className="profileDisplay">
             <div className="Headings">
-                <span className="SubHeading"><b>Profile</b><img src={EditButton}></img></span>
+                <span className="SubHeading"><b>Profile</b><a href="/editprofile"><img src={EditButton} /></a></span>
 
             </div>
             <hr />
@@ -96,7 +97,7 @@ export default function Profile() {
     profileData ? (
         <div className="profileDisplay">
             <div className="Headings">
-                <span className="SubHeading"><b>Profile</b><img src={EditButton}></img></span>
+                <span className="SubHeading"><b>Profile</b><a href="/editprofile"><img src={EditButton} /></a></span>
             </div>
             <hr />
             

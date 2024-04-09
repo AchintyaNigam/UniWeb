@@ -19,8 +19,8 @@ export default function HomeStudent()
             <div className="homeMain">
                 <span>Welcome</span>
                 <div className="homeButtonsContainer">
-                    <div className="homeButtons"><a href="/profile">Profile</a></div>
-                    <div className="homeButtons"><a href="/marksstudent">Marks</a></div>
+                    <div className="homeButtons"><a className="link" href="/profile">Profile</a></div>
+                    <div className="homeButtons"><a className="link" href="/marksstudent">Marks</a></div>
                 </div>
             </div>
             </>

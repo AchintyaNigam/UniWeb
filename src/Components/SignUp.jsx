@@ -9,8 +9,8 @@ export default function SignUp()
             <div className="signUpContainer">
                 <h1 id="question">Are You a Student or a Teacher?</h1>
                 <div className="buttonsContainer">
-                    <div className="roleButton"><a href="studentsignup">Student</a></div>
-                    <div className="roleButton"><a href="teachersignup">Teacher</a></div>
+                    <div className="roleButton"><a className="link" href="studentsignup">Student</a></div>
+                    <div className="roleButton"><a className="link" href="teachersignup">Teacher</a></div>
                 </div>
             </div>
         </div>
