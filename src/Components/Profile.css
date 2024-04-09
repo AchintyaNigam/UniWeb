@@ -27,7 +27,9 @@
     flex-direction: column;
     justify-content: center;
     align-items: left;
-    padding: 1%;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding: 2%;
 }
 
 .profileDisplay p{
@@ -56,7 +58,9 @@
 }
 
 
-
+.marksView{
+    text-align: left;
+}
 
 .profileDisplay {
     font-size: xx-large;

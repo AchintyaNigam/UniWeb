@@ -4,8 +4,6 @@ import NavbarStudent from "./NavbarStudent";
 import NavbarTeacher from "./NavbarTeacher";
 import Forbidden from "./Forbidden";
 
-
-
 import EditButton from "./../assets/edit_button.png";
 
 import './Profile.css';
@@ -55,7 +53,7 @@ export default function Profile() {
 
     if (loading) {
         // Show loading spinner or message while data is being fetched
-        return <div className="popup"><h1>Loading...</h1></div>;
+        return <div className="popup"><h1>Loading</h1></div>;
     }
     return (
         <>
@@ -74,14 +72,14 @@ export default function Profile() {
             <p><strong>Email:</strong> {profileData.mainProfile.email}</p>
             <p><strong>DOB:</strong> {profileData.mainProfile.birthdate}</p>
             <div className="Headings">
-                <span className="SubHeading"><b>Student Info</b><img src={EditButton}></img></span>
+                <span className="SubHeading"><b>Student Info</b><a href="/editstudentprofile"><img src={EditButton}></img></a></span>
                 
             </div>
             <hr />
             <p><strong>Roll Number:</strong> {profileData.studentProfile.rollNumber}</p>
             <p><strong>Branch:</strong> {profileData.studentProfile.branch}</p>
             <div className="Headings">
-                <span className="subHeading"><b>Address</b><img src={EditButton}></img></span>
+                <span className="subHeading"><b>Address</b><a href="/editstudentaddress"><img src={EditButton}></img></a></span>
             </div>
             <hr />
             <p><strong>Street:</strong> {profileData.address.street}</p>
@@ -105,7 +103,7 @@ export default function Profile() {
             <p><strong>Email:</strong> {profileData.mainProfile.email}</p>
             <p><strong>DOB:</strong> {profileData.mainProfile.birthdate}</p>
             <div className="Headings">
-                <span className="SubHeading"><b>Teacher Info</b><img src={EditButton}></img></span>
+                <span className="SubHeading"><b>Teacher Info</b><a href="editteacherprofile"><img src={EditButton}></img></a></span>
             </div>
             <hr />
             <p><strong>Department:</strong> {profileData.teacherProfile.department}</p>

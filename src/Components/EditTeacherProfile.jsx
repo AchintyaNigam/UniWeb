@@ -2,19 +2,14 @@ import React from "react";
 import { useGlobalContext } from './../GlobalContext';
 import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-import NavbarStudent from "./NavbarStudent";
 import NavbarTeacher from "./NavbarTeacher";
 import Forbidden from "./Forbidden";
 import './SignUpR.css';
 import './LoginBox.css';
 
 
-export default function EditProfile(){
-    const [password, setPassword] = useState("");
-    const [username, setUsername] = useState("");
-    const [fullName, setFullName] = useState("");
-    const [email, setEmail] = useState("");
-    const [birthdate, setBirthdate] = useState("");
+export default function EditTeacherProfile(){
+    const [department, setDepartment] = useState("");
     
     const [loading, setLoading] = useState(false);
 
@@ -27,13 +22,10 @@ export default function EditProfile(){
         const fetchProfileData = async () => {
             try {
                 // Make request based on role
-                    const mainProfile = await fetchStudentMainProfile(userId, token);
+                    const teacherProfile = await fetchTeacherProfile(userId, token);
                     
-                    setFullName(mainProfile.fullName);
-                    setEmail(mainProfile.email);
-                    setBirthdate(mainProfile.birthdate);
-                    setUsername(mainProfile.username);
-                    setPassword(mainProfile.password);
+                    setDepartment(teacherProfile.department);
+
 
             } catch (error) {
                 console.error("Error fetching profile data:", error);
@@ -47,25 +39,20 @@ export default function EditProfile(){
         }
     }, [token, role, userId]);
 
-    if (!token || !userId) {
+    if (!token || !userId || role==="student") {
         // Redirect or show error message if token or userId is missing
         return <Forbidden />;
     }
 
     const sendFirstRequest = async () => {
-        const response = await fetch(`http://localhost:8080/api/profile/update/${userId}`, {
+        const response = await fetch(`http://localhost:8080/api/teacher/profile/update/${userId}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${token}`
             },
             body: JSON.stringify({
-                username,
-                password,
-                role,
-                fullName,
-                email,
-                birthdate
+                department
             })
         });
         const data = await response.json();
@@ -79,8 +66,9 @@ export default function EditProfile(){
             alert("successfully updated");
             navigate("/profile");
         } catch (error) {
-            console.error("Registration failed:", error);
-            alert("Registration failed. Please try again.");
+            console.error("Failed:", error);
+            alert("Failed. Please try again.");
+    
         } finally {
             setLoading(false);
         }
@@ -88,41 +76,21 @@ export default function EditProfile(){
 
     return(
         <>
-            {role === "student" ? <NavbarStudent /> : <NavbarTeacher />}      
+            <NavbarTeacher />      
             {loading && <div className="loadingPopup">Submitting. <b>Do not</b> close this tab.</div>}
             <div className="loginBox">
             <div className="loginFields">
-                <h1>Edit Details</h1>
+                <h1>Edit Address Details</h1>
                 <hr></hr>
                 <div className="inputBox"> 
                     <input 
                         type="text" 
                         required
-                        value={fullName}
-                        onChange={(e) => setFullName(e.target.value)} 
-                        id="fullName" 
+                        value={department}
+                        onChange={(e) => setDepartment(e.target.value)} 
+                        id="department" 
                     />
-                    <label htmlFor="fullName"><i>Full Name</i></label>
-                </div>
-                <div className="inputBox"> 
-                    <input 
-                        type="email" 
-                        required
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)} 
-                        id="email" 
-                    />
-                    <label htmlFor="email"><i>Email</i></label>
-                </div>
-                <div className="inputBox"> 
-                    <input 
-                        type="text" 
-                        required 
-                        value={birthdate}
-                        onChange={(e) => setBirthdate(e.target.value)} 
-                        id="dob" 
-                    />
-                    <label htmlFor="dob">D.O.B</label>
+                    <label htmlFor="department"><i>Department</i></label>
                 </div>
                 <div className="inputBox" id="submit"> 
                     <button type="submit" onClick={handleSubmit}>Update</button>
@@ -135,14 +103,14 @@ export default function EditProfile(){
     )
 }
 
-async function fetchStudentMainProfile(userId, token) {
-    const response = await fetch(`http://localhost:8080/api/profile/get/${userId}`, {
+async function fetchTeacherProfile(userId, token) {
+    const response = await fetch(`http://localhost:8080/api/teacher/profile/get/${userId}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
     });
     if (!response.ok) {
-        throw new Error('Failed to fetch student main profile');
+        throw new Error('Failed to fetch student profile');
     }
     return await response.json();
 }

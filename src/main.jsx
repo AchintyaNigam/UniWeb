@@ -13,6 +13,9 @@ import MarksTeacher from './Components/MarksTeacher.jsx'
 import AllStudentProfiles from './Components/AllStudentProfiles.jsx'
 import Forbidden from './Components/Forbidden.jsx'
 import EditProfile from './Components/EditProfile.jsx'
+import EditStudentProfile from './Components/EditStudentDetails.jsx'
+import EditStudentAddress from './Components/EditStudentAddress.jsx'
+import EditTeacherProfile from './Components/EditTeacherProfile.jsx'
 
 import './App.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
@@ -31,7 +34,13 @@ const router = createBrowserRouter([
   { path: '/marksteacher', element: <MarksTeacher /> },
   { path: '/allstudentprofiles', element: <AllStudentProfiles /> },
   { path: '/forbidden', element: <Forbidden /> },
-  { path: '/editprofile', element: <EditProfile />}
+  { path: '/editprofile', element: <EditProfile />},
+  { path: '/editstudentprofile', element: <EditStudentProfile />},
+  { path: '/editstudentaddress', element: <EditStudentAddress />},
+  { path: '/editteacherprofile', element: <EditTeacherProfile />}
+
+
+
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

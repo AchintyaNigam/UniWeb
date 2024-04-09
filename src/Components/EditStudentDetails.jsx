@@ -3,18 +3,14 @@ import { useGlobalContext } from './../GlobalContext';
 import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import NavbarStudent from "./NavbarStudent";
-import NavbarTeacher from "./NavbarTeacher";
 import Forbidden from "./Forbidden";
 import './SignUpR.css';
 import './LoginBox.css';
 
 
-export default function EditProfile(){
-    const [password, setPassword] = useState("");
-    const [username, setUsername] = useState("");
-    const [fullName, setFullName] = useState("");
-    const [email, setEmail] = useState("");
-    const [birthdate, setBirthdate] = useState("");
+export default function EditStudentProfile(){
+    const [rollNumber, setrollNumber] = useState("");
+    const [branch, setBranch] = useState("");
     
     const [loading, setLoading] = useState(false);
 
@@ -27,13 +23,11 @@ export default function EditProfile(){
         const fetchProfileData = async () => {
             try {
                 // Make request based on role
-                    const mainProfile = await fetchStudentMainProfile(userId, token);
+                    const studentProfile = await fetchStudentProfile(userId, token);
                     
-                    setFullName(mainProfile.fullName);
-                    setEmail(mainProfile.email);
-                    setBirthdate(mainProfile.birthdate);
-                    setUsername(mainProfile.username);
-                    setPassword(mainProfile.password);
+       
+                    setrollNumber(studentProfile.rollNumber);
+                    setBranch(studentProfile.branch);
 
             } catch (error) {
                 console.error("Error fetching profile data:", error);
@@ -47,25 +41,21 @@ export default function EditProfile(){
         }
     }, [token, role, userId]);
 
-    if (!token || !userId) {
+    if (!token || !userId || role==="teacher") {
         // Redirect or show error message if token or userId is missing
         return <Forbidden />;
     }
 
     const sendFirstRequest = async () => {
-        const response = await fetch(`http://localhost:8080/api/profile/update/${userId}`, {
+        const response = await fetch(`http://localhost:8080/api/student/profile/update/${userId}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${token}`
             },
             body: JSON.stringify({
-                username,
-                password,
-                role,
-                fullName,
-                email,
-                birthdate
+                rollNumber,
+                branch
             })
         });
         const data = await response.json();
@@ -88,7 +78,7 @@ export default function EditProfile(){
 
     return(
         <>
-            {role === "student" ? <NavbarStudent /> : <NavbarTeacher />}      
+            <NavbarStudent />      
             {loading && <div className="loadingPopup">Submitting. <b>Do not</b> close this tab.</div>}
             <div className="loginBox">
             <div className="loginFields">
@@ -98,31 +88,21 @@ export default function EditProfile(){
                     <input 
                         type="text" 
                         required
-                        value={fullName}
-                        onChange={(e) => setFullName(e.target.value)} 
-                        id="fullName" 
+                        value={rollNumber}
+                        onChange={(e) => setrollNumber(e.target.value)} 
+                        id="rollNumber" 
                     />
-                    <label htmlFor="fullName"><i>Full Name</i></label>
-                </div>
-                <div className="inputBox"> 
-                    <input 
-                        type="email" 
-                        required
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)} 
-                        id="email" 
-                    />
-                    <label htmlFor="email"><i>Email</i></label>
+                    <label htmlFor="rollNumber"><i>Roll Number</i></label>
                 </div>
                 <div className="inputBox"> 
                     <input 
                         type="text" 
-                        required 
-                        value={birthdate}
-                        onChange={(e) => setBirthdate(e.target.value)} 
-                        id="dob" 
+                        required
+                        value={branch}
+                        onChange={(e) => setBranch(e.target.value)} 
+                        id="branch" 
                     />
-                    <label htmlFor="dob">D.O.B</label>
+                    <label htmlFor="branch"><i>Branch</i></label>
                 </div>
                 <div className="inputBox" id="submit"> 
                     <button type="submit" onClick={handleSubmit}>Update</button>
@@ -135,14 +115,14 @@ export default function EditProfile(){
     )
 }
 
-async function fetchStudentMainProfile(userId, token) {
-    const response = await fetch(`http://localhost:8080/api/profile/get/${userId}`, {
+async function fetchStudentProfile(userId, token) {
+    const response = await fetch(`http://localhost:8080/api/student/profile/get/${userId}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
     });
     if (!response.ok) {
-        throw new Error('Failed to fetch student main profile');
+        throw new Error('Failed to fetch student profile');
     }
     return await response.json();
 }
