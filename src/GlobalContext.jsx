@@ -6,6 +6,7 @@ export const useGlobalContext = () => {
   const [token, setToken] = useState('');
   const [role, setRole] = useState('');
   const [userId, setUserId] = useState('');
+  const [globId, setGlobId] = useState('');
 
   useEffect(() => {
     const storedState = localStorage.getItem('authState');
@@ -14,6 +15,11 @@ export const useGlobalContext = () => {
       setToken(token);
       setRole(role);
       setUserId(userId);
+    }
+    const storedState2 = localStorage.getItem('updating');
+    if(storedState2){
+      const { globId } = JSON.parse(storedState2);
+      setGlobId(globId)
     }
   }, []);
 
@@ -24,14 +30,22 @@ export const useGlobalContext = () => {
     localStorage.setItem('authState', JSON.stringify({ token, role, userId }));
   };
 
-  return { token, role, userId, updateGlobalState };
+  const updateGlobalId = (globId) => {
+    setGlobId(globId);
+    localStorage.setItem('updating', JSON.stringify(globId));
+  };
+
+  return { token, role, userId, globId, updateGlobalState, updateGlobalId };
 };
+
+ 
 
 
 export const GlobalProvider = ({ children }) => {
   const [token, setToken] = useState('');
   const [role, setRole] = useState('');
-  const [userId, setUserId] = useState('');   
+  const [userId, setUserId] = useState('');
+  const [globId, setGlobId] = useState('');
 
   const updateGlobalState = (token, role, userId) => {
     setToken(token);
@@ -39,10 +53,15 @@ export const GlobalProvider = ({ children }) => {
     setUserId(userId);
     localStorage.setItem('authState', JSON.stringify({ token, role, userId }));
   };
+
+  const updateGlobalId = (globId) => {
+    setGlobId(globId);
+    localStorage.setItem('updating', JSON.stringify(globId));
+  };
   
 
   return (
-    <GlobalContext.Provider value={{ token, role, userId, updateGlobalState }}>
+    <GlobalContext.Provider value={{ token, role, userId, globId, updateGlobalState, updateGlobalId }}>
       {children}
     </GlobalContext.Provider>
   );

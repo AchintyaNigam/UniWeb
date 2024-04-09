@@ -16,6 +16,8 @@ import EditProfile from './Components/EditProfile.jsx'
 import EditStudentProfile from './Components/EditStudentDetails.jsx'
 import EditStudentAddress from './Components/EditStudentAddress.jsx'
 import EditTeacherProfile from './Components/EditTeacherProfile.jsx'
+import EditMarks from './Components/EditMarks.jsx'
+import StudentExpanded from './Components/StudentExpanded.jsx'
 
 import './App.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
@@ -35,9 +37,11 @@ const router = createBrowserRouter([
   { path: '/allstudentprofiles', element: <AllStudentProfiles /> },
   { path: '/forbidden', element: <Forbidden /> },
   { path: '/editprofile', element: <EditProfile />},
-  { path: '/editstudentprofile', element: <EditStudentProfile />},
-  { path: '/editstudentaddress', element: <EditStudentAddress />},
-  { path: '/editteacherprofile', element: <EditTeacherProfile />}
+  { path: '/editstudentprofile', element: <EditStudentProfile /> },
+  { path: '/editstudentaddress', element: <EditStudentAddress /> },
+  { path: '/editteacherprofile', element: <EditTeacherProfile /> },
+  { path: '/editmarks/:globId', element: <EditMarks /> },
+  { path: '/studentexpanded/:globalId', element: <StudentExpanded /> }
 
 
 

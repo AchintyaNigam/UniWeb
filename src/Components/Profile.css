@@ -1,17 +1,41 @@
 .Profile{
-    margin-top: 10vh;
-    padding-top: 10vh;
+  
     overflow: scroll;
 }
 
 .Profile a{
-    text-decoration: none !important; 
+    --s: 0.1em;   /* the thickness of the line */
+    --c: var(--secondary); /* the color */
+    color: var(--third);
+    font-size: medium;
+    text-decoration: none;
+    padding: .25rem;
+    font-weight: 700;
+    padding-bottom: var(--s);
+    background: 
+      linear-gradient(90deg,var(--c) 50%,#000 0) calc(100% - var(--_p,0%))/200% 100%,
+      linear-gradient(var(--c) 0 0) 0% 100%/var(--_p,0%) var(--s) no-repeat;
+    -webkit-background-clip: text,padding-box;
+            background-clip: text,padding-box;
+    transition: 0.5s;
 }
 
+.tds{
+    font-size: medium;
+}
+
+.tabElements{
+    display: flex;
+    flex-direction: row;
+    gap: 2%;
+}
+
+
 .Profile a:hover{
-    text-decoration: none !important; 
+--_p: 100%; cursor: pointer;
 }
 .profileDisplay{
+    margin-top: 8vh;
     background-color: var(--light);
     color: var(--dark);
     position: absolute;
@@ -61,6 +85,24 @@
 .marksView{
     text-align: left;
 }
+
+.marksEdit{
+    --s: 0.1em;   /* the thickness of the line */
+    --c: var(--secondary); /* the color */
+    color: var(--third);
+    text-decoration: none;
+    padding: .25rem;
+    font-weight: 700;
+    padding-bottom: var(--s);
+    background: 
+      linear-gradient(90deg,var(--c) 50%,#000 0) calc(100% - var(--_p,0%))/200% 100%,
+      linear-gradient(var(--c) 0 0) 0% 100%/var(--_p,0%) var(--s) no-repeat;
+    -webkit-background-clip: text,padding-box;
+            background-clip: text,padding-box;
+    transition: 0.5s;
+}
+
+.marksEdit:hover{--_p: 100%; cursor: pointer;}
 
 .profileDisplay {
     font-size: xx-large;

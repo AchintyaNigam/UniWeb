@@ -3,9 +3,10 @@ import { useGlobalContext } from './../GlobalContext';
 import './Navbar.css'
 export default function Navbar  ()
 {
-    const { updateGlobalState } = useGlobalContext();
+    const { updateGlobalState, updateGlobalId } = useGlobalContext();
     function logout(){
         updateGlobalState('','','');
+        updateGlobalId('');
     }
      
     return (
