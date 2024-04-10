@@ -41,7 +41,7 @@ const router = createBrowserRouter([
   { path: '/editstudentaddress', element: <EditStudentAddress /> },
   { path: '/editteacherprofile', element: <EditTeacherProfile /> },
   { path: '/editmarks/:globId', element: <EditMarks /> },
-  { path: '/studentexpanded/:globalId', element: <StudentExpanded /> }
+  { path: '/studentexpanded/:globId', element: <StudentExpanded /> }
 
 
 

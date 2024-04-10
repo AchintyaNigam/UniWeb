@@ -1,11 +1,8 @@
-
 import React, { useState, useEffect } from "react";
 import { useGlobalContext } from './../GlobalContext';
 import { useNavigate } from 'react-router-dom';
 import NavbarTeacher from "./NavbarTeacher";
 import Forbidden from "./Forbidden";
-
-
 
 import './Profile.css';
 
@@ -16,12 +13,11 @@ export default function AllStudentProfiles() {
 
     const navigate = useNavigate();
 
-
     useEffect(() => {
         const fetchStudentProfiles = async () => {
             setLoading(true);
             try {
-                const response = await fetch('http://localhost:8080/api/profile/get', {
+                const response = await fetch('http://localhost:8080/api/student/profile/get', {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -30,25 +26,37 @@ export default function AllStudentProfiles() {
                     throw new Error("Failed to fetch student profiles");
                 }
                 const profiles = await response.json();
-                // Filter out only student profiles
-                const studentProfiles = profiles.filter(profile => profile.role === 'student');
-                setStudentProfiles(studentProfiles);
+                // Fetch additional details for each student profile
+                const profilesWithDetails = await Promise.all(profiles.map(async profile => {
+                    const detailResponse = await fetch(`http://localhost:8080/api/profile/get/${profile.userId}`, {
+                        headers: {
+                            Authorization: `Bearer ${token}`
+                        }
+                    });
+                    if (!detailResponse.ok) {
+                        throw new Error(`Failed to fetch details for profile ${profile.id}`);
+                    }
+                    const details = await detailResponse.json();
+                    return { ...profile, details };
+                }));
+                setStudentProfiles(profilesWithDetails);
             } catch (error) {
                 console.error("Error fetching student profiles:", error);
-            }
-            finally {
+            } finally {
                 setLoading(false);
             }
         };
-        if (token && userId && role==='teacher') {
-            console.log(token)
+        if (token && userId && role === 'teacher') {
             fetchStudentProfiles();
         }
-
     }, [token, role, userId]);
 
     if (!token || !userId || role === 'student') {
         return <Forbidden />;
+    }
+
+    const handleMore = (uId) => {
+        navigate(`/studentexpanded/${uId}`);
     }
 
     return (
@@ -59,30 +67,29 @@ export default function AllStudentProfiles() {
                     <h1>Loading</h1>
                 </div>
             ) : (
-            <div className="Profile">
-                {
-                    studentProfiles ? (
-                <div className="profileDisplay">
-                    <div className="Headings">
-                        <span className="SubHeading"><b>All Student Profiles</b></span>
-                    </div>
-                    <hr />
-            
-                        <div>
-                            {studentProfiles.map((profile) => (
-                                <div className="tabElements" key={profile.id}>
-            
-                                    <span className="tds"><strong>Name:</strong> {profile.fullName}</span>
-                                    <span className="tds"><strong>Email: </strong> {profile.email}</span>
+                    <div className="Profile">
+                        {studentProfiles.length > 0 ? (
+                            <div className="profileDisplay">
+                                <div className="Headings">
+                                    <span className="SubHeading"><b>All Student Profiles</b></span>
                                 </div>
-                            ))}
-                        </div>
-                </div>
-                ) : (
-                    <div className="popup">Loading profile data...</div>
+                                <hr />
+                                <div>
+                                    {studentProfiles.map((profile) => (
+                                        <div className="tabElements" key={profile.id}>
+                                            <span className="tds"><strong>Role Number:</strong> {profile.rollNumber}</span>
+                                            <span className="tds"><strong>Name:</strong> {profile.details.fullName}</span>
+                                            <span className="tds"><strong>Email:</strong> {profile.details.email}</span>
+                                            <a className="link" onClick={()=>handleMore(profile.userId)}>More</a>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        ) : (
+                                <div className="popup">No student profiles available</div>
+                            )}
+                    </div>
                 )}
-            </div>
-            )}
         </>
     );
 }

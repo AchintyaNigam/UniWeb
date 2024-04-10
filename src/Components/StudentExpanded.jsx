@@ -17,7 +17,6 @@ export default function StudentExpanded() {
             setLoading(true);
             try {
                 // Make request based on role
-                if (role === "student") {
                     const [mainProfile, studentProfile, address] = await Promise.all([
                         fetchStudentMainProfile(globId, token),
                         fetchStudentProfile(globId, token),
@@ -25,7 +24,7 @@ export default function StudentExpanded() {
                     ]);
                     
                     setProfileData({ mainProfile, studentProfile, address });
-                } 
+                    console.log(profileData);
             } catch (error) {
                 console.error("Error fetching profile data:", error);
                 // Handle error, e.g., show error message
