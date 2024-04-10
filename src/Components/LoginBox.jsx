@@ -22,10 +22,14 @@ export default function LoginBox(token, )
             // Redirect user based on role
             if (role === 'student') {
                 // Redirect to student home page
+                console.log(role);
                 navigate('/homestudent');
             } else if (role === 'teacher') {
                 // Redirect to teacher home page
                 navigate('/hometeacher');
+            } else if (role === 'admin') {
+
+                navigate('/homeadmin');
             } else {
                 // Handle other roles if needed
                 console.error('Unknown role:', role);

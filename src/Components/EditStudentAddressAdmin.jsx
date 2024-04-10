@@ -2,13 +2,17 @@ import React from "react";
 import { useGlobalContext } from './../GlobalContext';
 import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-import NavbarStudent from "./NavbarStudent";
+import { useParams } from "react-router-dom";
+
+import NavbarAdmin from "./NavbarAdmin";
 import Forbidden from "./Forbidden";
 import './SignUpR.css';
 import './LoginBox.css';
 
 
-export default function EditStudentAddress(){
+export default function EditStudentAddressAdmin(){
+    const { globId } = useParams();
+
     const [city, setCity] = useState("");
     const [street, setStreet] = useState("");
     const [zipCode, setZipCode] = useState("");
@@ -25,7 +29,7 @@ export default function EditStudentAddress(){
         const fetchProfileData = async () => {
             try {
                 // Make request based on role
-                    const studentAddress = await fetchStudentAddress(userId, token);
+                    const studentAddress = await fetchStudentAddress(globId, token);
                     
        
                     setCity(studentAddress.city);
@@ -40,18 +44,18 @@ export default function EditStudentAddress(){
             }
         };
 
-        if (token && userId && role==='student') {
+        if (token && userId && role==='admin') {
             fetchProfileData();
         }
-    }, [token, role, userId]);
+    }, [token, role, userId, globId]);
 
-    if (!token || !userId || role!="student") {
+    if (!token || !userId || role!="admin") {
         // Redirect or show error message if token or userId is missing
         return <Forbidden />;
     }
 
     const sendFirstRequest = async () => {
-        const response = await fetch(`http://localhost:8080/api/student/address/update/${userId}`, {
+        const response = await fetch(`http://localhost:8080/api/student/address/update/${globId}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -72,7 +76,7 @@ export default function EditStudentAddress(){
         try {
             await sendFirstRequest();
             alert("successfully updated");
-            navigate("/profile");
+            navigate(`/studentexpandedeadmin/${globId}`);
         } catch (error) {
             console.error("Failed:", error);
             alert("Failed. Please try again.");
@@ -84,7 +88,7 @@ export default function EditStudentAddress(){
 
     return(
         <>
-            <NavbarStudent />
+            <NavbarAdmin />
             {loading && <div className="loadingPopup">Submitting. <b>Do not</b> close this tab.</div>}
             <div className="loginBox">
             <div className="loginFields">

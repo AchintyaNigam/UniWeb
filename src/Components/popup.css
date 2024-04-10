@@ -5,6 +5,8 @@
     position: absolute;
     top: 50%;
     left: 50%;
+    font-size: larger;
+    padding: 2%;
     transform: translate(-50%, -50%);
     width: 90vw;
     text-align: center;

@@ -2,17 +2,18 @@ import React from "react";
 import { useGlobalContext } from './../GlobalContext';
 import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-import NavbarStudent from "./NavbarStudent";
+import { useParams } from "react-router-dom";
+
+import NavbarAdmin from "./NavbarAdmin";
 import Forbidden from "./Forbidden";
 import './SignUpR.css';
 import './LoginBox.css';
 
 
-export default function EditStudentAddress(){
-    const [city, setCity] = useState("");
-    const [street, setStreet] = useState("");
-    const [zipCode, setZipCode] = useState("");
+export default function EditTeacherProfileAdmin(){
+    const { globId } = useParams();
 
+    const [department, setDepartment] = useState("");
     
     const [loading, setLoading] = useState(false);
 
@@ -25,13 +26,10 @@ export default function EditStudentAddress(){
         const fetchProfileData = async () => {
             try {
                 // Make request based on role
-                    const studentAddress = await fetchStudentAddress(userId, token);
+                    const teacherProfile = await fetchStudentProfile(globId, token);
                     
        
-                    setCity(studentAddress.city);
-                    setStreet(studentAddress.street);
-                    setZipCode(studentAddress.zipCode);
-
+                    setDepartment(teacherProfile.department);
 
             } catch (error) {
                 console.error("Error fetching profile data:", error);
@@ -40,27 +38,25 @@ export default function EditStudentAddress(){
             }
         };
 
-        if (token && userId && role==='student') {
+        if (token && userId && role==='admin') {
             fetchProfileData();
         }
-    }, [token, role, userId]);
+    }, [token, role, userId, globId]);
 
-    if (!token || !userId || role!="student") {
+    if (!token || !userId || role!="admin") {
         // Redirect or show error message if token or userId is missing
         return <Forbidden />;
     }
 
     const sendFirstRequest = async () => {
-        const response = await fetch(`http://localhost:8080/api/student/address/update/${userId}`, {
+        const response = await fetch(`http://localhost:8080/api/teacher/profile/update/${globId}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
                 "Authorization": `Bearer ${token}`
             },
             body: JSON.stringify({
-                city,
-                street,
-                zipCode
+                department
             })
         });
         const data = await response.json();
@@ -72,11 +68,10 @@ export default function EditStudentAddress(){
         try {
             await sendFirstRequest();
             alert("successfully updated");
-            navigate("/profile");
+            navigate(`/teacherexpandedadmin/${globId}`);
         } catch (error) {
-            console.error("Failed:", error);
-            alert("Failed. Please try again.");
-    
+            console.error("Update failed:", error);
+            alert("Update failed. Please try again.");
         } finally {
             setLoading(false);
         }
@@ -84,41 +79,21 @@ export default function EditStudentAddress(){
 
     return(
         <>
-            <NavbarStudent />
+            <NavbarAdmin />      
             {loading && <div className="loadingPopup">Submitting. <b>Do not</b> close this tab.</div>}
             <div className="loginBox">
             <div className="loginFields">
-                <h1>Edit Address Details</h1>
+                <h1>Edit Details</h1>
                 <hr></hr>
                 <div className="inputBox"> 
                     <input 
                         type="text" 
                         required
-                        value={street}
-                        onChange={(e) => setStreet(e.target.value)} 
-                        id="street" 
+                        value={department}
+                        onChange={(e) => setDepartment(e.target.value)} 
+                        id="department" 
                     />
-                    <label htmlFor="street"><i>Street</i></label>
-                </div>
-                <div className="inputBox"> 
-                    <input 
-                        type="text" 
-                        required
-                        value={city}
-                        onChange={(e) => setCity(e.target.value)} 
-                        id="city" 
-                    />
-                    <label htmlFor="city"><i>City</i></label>
-                </div>
-                <div className="inputBox"> 
-                    <input 
-                        type="text" 
-                        required
-                        value={zipCode}
-                        onChange={(e) => setZipCode(e.target.value)} 
-                        id="zipCode" 
-                    />
-                    <label htmlFor="zipCode"><i>zipCode</i></label>
+                    <label htmlFor="department"><i>Department</i></label>
                 </div>
                 <div className="inputBox" id="submit"> 
                     <button type="submit" onClick={handleSubmit}>Update</button>
@@ -131,14 +106,14 @@ export default function EditStudentAddress(){
     )
 }
 
-async function fetchStudentAddress(userId, token) {
-    const response = await fetch(`http://localhost:8080/api/student/address/get/${userId}`, {
+async function fetchStudentProfile(userId, token) {
+    const response = await fetch(`http://localhost:8080/api/teacher/profile/get/${userId}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
     });
     if (!response.ok) {
-        throw new Error('Failed to fetch student profile');
+        throw new Error('Failed to fetch teacher profile');
     }
     return await response.json();
 }

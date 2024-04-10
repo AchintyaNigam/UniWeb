@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useGlobalContext } from './../GlobalContext';
 import { useNavigate } from 'react-router-dom';
-import NavbarTeacher from "./NavbarTeacher";
+import NavbarAdmin from "./NavbarAdmin";
 import Forbidden from "./Forbidden";
 
 import './Profile.css';
 
-export default function AllStudentProfiles() {
+export default function AllStudentProfilesAdmin() {
     const [studentProfiles, setStudentProfiles] = useState([]);
     const { token, role, userId } = useGlobalContext();
     const [loading, setLoading] = useState(false);
@@ -46,7 +46,7 @@ export default function AllStudentProfiles() {
                 setLoading(false);
             }
         };
-        if (token && userId && role === 'teacher') {
+        if (token && userId && role === 'admin') {
             fetchStudentProfiles();
         }
     }, [token, role, userId]);
@@ -56,12 +56,12 @@ export default function AllStudentProfiles() {
     }
 
     const handleMore = (uId) => {
-        navigate(`/studentexpanded/${uId}`);
+        navigate(`/studentexpandedadmin/${uId}`);
     }
 
     return (
         <>
-            <NavbarTeacher />
+            <NavbarAdmin />
             {loading ? (
                 <div className="popup">
                     <h1>Loading</h1>

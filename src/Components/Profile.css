@@ -3,7 +3,7 @@
     overflow: scroll;
 }
 
-.Profile a{
+.moreLinks{
     --s: 0.1em;   /* the thickness of the line */
     --c: var(--secondary); /* the color */
     color: var(--third);
@@ -31,7 +31,7 @@
 }
 
 
-.Profile a:hover{
+.moreLinks:hover{
 --_p: 100%; cursor: pointer;
 }
 .profileDisplay{
@@ -43,7 +43,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     width: 90vw;
-    max-width: 700px;   
+    max-width: 900px;   
     border-radius: 2%;
     opacity: 80%;
     overflow: hidden;

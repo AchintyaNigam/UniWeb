@@ -31,6 +31,7 @@ export default function StudentSignUp()
         setLoading(true);
         try {
             const userId = await sendFirstRequest();
+            console.log(userId);
             await sendSecondRequest(userId);
             await sendThirdRequest(userId);
             alert("Registration successful");
@@ -59,6 +60,7 @@ export default function StudentSignUp()
             })
         });
         const data = await response.json();
+        console.log(data);
         return data.userId;
     };
 
