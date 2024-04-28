@@ -55,7 +55,7 @@ export default function EditStudentAddressAdmin(){
     }
 
     const sendFirstRequest = async () => {
-        const response = await fetch(`http://localhost:8080/api/student/address/update/${globId}`, {
+        const response = await fetch(`http://adorable-forgiveness-production.up.railway.app/api/student/address/update/${globId}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -136,7 +136,7 @@ export default function EditStudentAddressAdmin(){
 }
 
 async function fetchStudentAddress(userId, token) {
-    const response = await fetch(`http://localhost:8080/api/student/address/get/${userId}`, {
+    const response = await fetch(`http://adorable-forgiveness-production.up.railway.app/api/student/address/get/${userId}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }

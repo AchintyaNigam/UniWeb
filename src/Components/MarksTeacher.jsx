@@ -24,7 +24,7 @@ export default function MarksTeacher() {
             setLoading(true);
             try {
                 // Make the API call to fetch marks data
-                const response = await fetch(`http://localhost:8080/api/student/marks/get`, {
+                const response = await fetch(`http://adorable-forgiveness-production.up.railway.app/api/student/marks/get`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }

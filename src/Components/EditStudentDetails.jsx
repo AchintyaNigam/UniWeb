@@ -47,7 +47,7 @@ export default function EditStudentProfile(){
     }
 
     const sendFirstRequest = async () => {
-        const response = await fetch(`http://localhost:8080/api/student/profile/update/${userId}`, {
+        const response = await fetch(`http://adorable-forgiveness-production.up.railway.app/api/student/profile/update/${userId}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -116,7 +116,7 @@ export default function EditStudentProfile(){
 }
 
 async function fetchStudentProfile(userId, token) {
-    const response = await fetch(`http://localhost:8080/api/student/profile/get/${userId}`, {
+    const response = await fetch(`http://adorable-forgiveness-production.up.railway.app/api/student/profile/get/${userId}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }

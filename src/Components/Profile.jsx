@@ -134,7 +134,7 @@ export default function Profile() {
 
 // Functions to fetch profile data based on user's role
 async function fetchStudentMainProfile(userId, token) {
-    const response = await fetch(`http://localhost:8080/api/profile/get/${userId}`, {
+    const response = await fetch(`http://adorable-forgiveness-production.up.railway.app/api/profile/get/${userId}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -146,7 +146,7 @@ async function fetchStudentMainProfile(userId, token) {
 }
 
 async function fetchStudentProfile(userId, token) {
-    const response = await fetch(`http://localhost:8080/api/student/profile/get/${userId}`, {
+    const response = await fetch(`http://adorable-forgiveness-production.up.railway.app/api/student/profile/get/${userId}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -158,7 +158,7 @@ async function fetchStudentProfile(userId, token) {
 }
 
 async function fetchStudentAddress(userId, token) {
-    const response = await fetch(`http://localhost:8080/api/student/address/get/${userId}`, {
+    const response = await fetch(`http://adorable-forgiveness-production.up.railway.app/api/student/address/get/${userId}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -170,7 +170,7 @@ async function fetchStudentAddress(userId, token) {
 }
 
 async function fetchTeacherMainProfile(userId, token) {
-    const response = await fetch(`http://localhost:8080/api/profile/get/${userId}`, {
+    const response = await fetch(`http://adorable-forgiveness-production.up.railway.app/api/profile/get/${userId}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -182,7 +182,7 @@ async function fetchTeacherMainProfile(userId, token) {
 }
 
 async function fetchTeacherProfile(userId, token) {
-    const response = await fetch(`http://localhost:8080/api/teacher/profile/get/${userId}`, {
+    const response = await fetch(`http://adorable-forgiveness-production.up.railway.app/api/teacher/profile/get/${userId}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }

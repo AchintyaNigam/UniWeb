@@ -17,7 +17,7 @@ export default function AllStudentProfilesAdmin() {
         const fetchStudentProfiles = async () => {
             setLoading(true);
             try {
-                const response = await fetch('http://localhost:8080/api/student/profile/get', {
+                const response = await fetch('http://adorable-forgiveness-production.up.railway.app/api/student/profile/get', {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -28,7 +28,7 @@ export default function AllStudentProfilesAdmin() {
                 const profiles = await response.json();
                 // Fetch additional details for each student profile
                 const profilesWithDetails = await Promise.all(profiles.map(async profile => {
-                    const detailResponse = await fetch(`http://localhost:8080/api/profile/get/${profile.userId}`, {
+                    const detailResponse = await fetch(`http://adorable-forgiveness-production.up.railway.app/api/profile/get/${profile.userId}`, {
                         headers: {
                             Authorization: `Bearer ${token}`
                         }

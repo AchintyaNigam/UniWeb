@@ -19,7 +19,7 @@ export default function EditMarks() {
         const fetchMarks = async () => {
             setLoading(true);
             try {
-                const response = await fetch(`http://localhost:8080/api/student/marks/get/${globId}`, {
+                const response = await fetch(`http://adorable-forgiveness-production.up.railway.app/api/student/marks/get/${globId}`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -53,7 +53,7 @@ export default function EditMarks() {
 
     const sendUpdateRequest = async (globId) => {
         try {
-            const response = await fetch(`http://localhost:8080/api/student/marks/update/${globId}`, {
+            const response = await fetch(`http://adorable-forgiveness-production.up.railway.app/api/student/marks/update/${globId}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

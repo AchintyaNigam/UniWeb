@@ -89,7 +89,7 @@ export default function StudentExpandedAdmin() {
 
 // Functions to fetch profile data based on user's role
 async function fetchTeacherMainProfile(userId, token) {
-    const response = await fetch(`http://localhost:8080/api/profile/get/${userId}`, {
+    const response = await fetch(`http://adorable-forgiveness-production.up.railway.app/api/profile/get/${userId}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -101,7 +101,7 @@ async function fetchTeacherMainProfile(userId, token) {
 }
 
 async function fetchTeacherProfile(userId, token) {
-    const response = await fetch(`http://localhost:8080/api/teacher/profile/get/${userId}`, {
+    const response = await fetch(`http://adorable-forgiveness-production.up.railway.app/api/teacher/profile/get/${userId}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }

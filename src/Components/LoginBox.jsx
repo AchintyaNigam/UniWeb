@@ -46,7 +46,7 @@ export default function LoginBox(token, )
 
     async function login(username, password) {
         try {
-            const response = await fetch('http://localhost:8080/api/login/post', {
+            const response = await fetch('http://adorable-forgiveness-production.up.railway.app/api/login/post', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

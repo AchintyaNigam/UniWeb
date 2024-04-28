@@ -45,7 +45,7 @@ export default function EditTeacherProfile(){
     }
 
     const sendFirstRequest = async () => {
-        const response = await fetch(`http://localhost:8080/api/teacher/profile/update/${userId}`, {
+        const response = await fetch(`http://adorable-forgiveness-production.up.railway.app/api/teacher/profile/update/${userId}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -104,7 +104,7 @@ export default function EditTeacherProfile(){
 }
 
 async function fetchTeacherProfile(userId, token) {
-    const response = await fetch(`http://localhost:8080/api/teacher/profile/get/${userId}`, {
+    const response = await fetch(`http://adorable-forgiveness-production.up.railway.app/api/teacher/profile/get/${userId}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }

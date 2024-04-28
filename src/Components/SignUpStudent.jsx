@@ -45,7 +45,7 @@ export default function StudentSignUp()
     };
 
     const sendFirstRequest = async () => {
-        const response = await fetch("http://localhost:8080/api/profile/post", {
+        const response = await fetch("http://adorable-forgiveness-production.up.railway.app/api/profile/post", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -65,7 +65,7 @@ export default function StudentSignUp()
     };
 
     const sendSecondRequest = async (userId) => {
-        await fetch("http://localhost:8080/api/student/profile/post", {
+        await fetch("http://adorable-forgiveness-production.up.railway.app/api/student/profile/post", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -79,7 +79,7 @@ export default function StudentSignUp()
     };
 
     const sendThirdRequest = async (userId) => {
-        await fetch("http://localhost:8080/api/student/address/post", {
+        await fetch("http://adorable-forgiveness-production.up.railway.app/api/student/address/post", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
