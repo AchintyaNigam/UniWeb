@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { useGlobalContext } from './../GlobalContext';
 import './LoginBox.css'
 
-export default function LoginBox(token, )
+export default function LoginBox({backendDomain})
 {
-
+    console.log(backendDomain)
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
     const [loggingIn, setLoggingIn] = useState(false); // State to track login request status
@@ -17,7 +17,7 @@ export default function LoginBox(token, )
         setLoggingIn(true); // Set loggingIn state to true when login request starts
         try {
             // Perform login request to server
-            const { token, role, userId } = await login(username, password);
+            const { token, role, userId } = await login(username, password, backendDomain);
             updateGlobalState(token, role, userId);
             // Redirect user based on role
             if (role === 'student') {
@@ -44,9 +44,10 @@ export default function LoginBox(token, )
         }
     };
 
-    async function login(username, password) {
+    async function login(username, password, backendDomain) {
         try {
-            const response = await fetch('http://adorable-forgiveness-production.up.railway.app/api/login/post', {
+            console.log(backendDomain)
+            const response = await fetch(`http://${backendDomain}/api/login/post`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

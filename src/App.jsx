@@ -4,12 +4,13 @@ import Navbar from './Components/Navbar';
 import './App.css'
 
 
-function App() {
+function App({backendDomain}) {
 
+  console.log(backendDomain)
   return (
     <div className='container'>
       <Navbar />
-      <Main />
+      <Main backendDomain={backendDomain}/>
     </div>
   );
 }

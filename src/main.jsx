@@ -36,34 +36,36 @@ import './App.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { GlobalProvider } from './GlobalContext';
 
+const backendDomain = "adorable-forgiveness-production.up.railway.app";
 
+console.log(backendDomain)
 const router = createBrowserRouter([
-  { path: '/', element: <App /> },
-  { path: '/signup', element: <SignUp /> },
-  { path: '/studentsignup', element: <StudentSignUp /> },
-  { path: '/teachersignup', element: <TeacherSignUp /> },
+  { path: '/', element: <App backendDomain={backendDomain}/> },
+  { path: '/signup', element: <SignUp backendDomain={backendDomain}/> },
+  { path: '/studentsignup', element: <StudentSignUp backendDomain={backendDomain}/> },
+  { path: '/teachersignup', element: <TeacherSignUp backendDomain={backendDomain}/> },
   { path: '/homestudent', element: <HomeStudent /> },
   { path: '/hometeacher', element: <HomeTeacher /> },
   { path: '/homeadmin', element: <HomeAdmin /> },
-  { path: '/profile', element: <Profile /> },
-  { path: '/marksstudent', element: <MarksStudent /> },
-  { path: '/marksteacher', element: <MarksTeacher /> },
-  { path: '/allstudentprofiles', element: <AllStudentProfiles /> },
-  { path: '/allstudentprofilesadmin', element: <AllStudentProfilesAdmin /> },
-  { path: '/allteacherprofilesadmin', element: <AllTeacherProfilesAdmin /> },
-  { path: '/forbidden', element: <Forbidden /> },
-  { path: '/editprofile', element: <EditProfile />},
-  { path: '/editprofileadmin/:globId', element: <EditProfileAdmin />},
-  { path: '/editstudentprofile', element: <EditStudentProfile /> },
-  { path: '/editstudentprofileadmin/:globId', element: <EditStudentProfileAdmin /> },
-  { path: '/editstudentaddress', element: <EditStudentAddress /> },
-  { path: '/editstudentaddressadmin/:globId', element: <EditStudentAddressAdmin /> },
-  { path: '/editteacherprofile', element: <EditTeacherProfile /> },
-  { path: '/editteacherprofileadmin/:globId', element: <EditTeacherProfileAdmin /> },
-  { path: '/editmarks/:globId', element: <EditMarks /> },
-  { path: '/studentexpanded/:globId', element: <StudentExpanded /> },
-  { path: '/studentexpandedadmin/:globId', element: <StudentExpandedAdmin /> },
-  { path: '/teacherexpandedadmin/:globId', element: <TeacherExpandedAdmin /> }
+  { path: '/profile', element: <Profile backendDomain={backendDomain}/> },
+  { path: '/marksstudent', element: <MarksStudent backendDomain={backendDomain}/> },
+  { path: '/marksteacher', element: <MarksTeacher backendDomain={backendDomain}/> },
+  { path: '/allstudentprofiles', element: <AllStudentProfiles backendDomain={backendDomain}/> },
+  { path: '/allstudentprofilesadmin', element: <AllStudentProfilesAdmin backendDomain={backendDomain}/> },
+  { path: '/allteacherprofilesadmin', element: <AllTeacherProfilesAdmin backendDomain={backendDomain}/> },
+  { path: '/forbidden', element: <Forbidden backendDomain={backendDomain}/> },
+  { path: '/editprofile', element: <EditProfile backendDomain/>},
+  { path: '/editprofileadmin/:globId', element: <EditProfileAdmin backendDomain={backendDomain}/>},
+  { path: '/editstudentprofile', element: <EditStudentProfile backendDomain={backendDomain}/> },
+  { path: '/editstudentprofileadmin/:globId', element: <EditStudentProfileAdmin backendDomain={backendDomain}/> },
+  { path: '/editstudentaddress', element: <EditStudentAddress backendDomain={backendDomain}/> },
+  { path: '/editstudentaddressadmin/:globId', element: <EditStudentAddressAdmin backendDomain={backendDomain}/> },
+  { path: '/editteacherprofile', element: <EditTeacherProfile backendDomain={backendDomain}/> },
+  { path: '/editteacherprofileadmin/:globId', element: <EditTeacherProfileAdmin backendDomain={backendDomain}/> },
+  { path: '/editmarks/:globId', element: <EditMarks backendDomain={backendDomain}/> },
+  { path: '/studentexpanded/:globId', element: <StudentExpanded backendDomain={backendDomain}/> },
+  { path: '/studentexpandedadmin/:globId', element: <StudentExpandedAdmin backendDomain={backendDomain}/> },
+  { path: '/teacherexpandedadmin/:globId', element: <TeacherExpandedAdmin backendDomain={backendDomain}/> }
 
 ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
