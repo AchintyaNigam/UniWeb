@@ -11,7 +11,7 @@ import EditButton from "./../assets/edit_button.png";
 
 import './Profile.css';
 
-export default function StudentExpandedAdmin() {
+export default function StudentExpandedAdmin({backendDomain}) {
     const { globId } = useParams();
     const { token, role, userId } = useGlobalContext();
     const [profileData, setProfileData] = useState(null);
@@ -24,8 +24,8 @@ export default function StudentExpandedAdmin() {
             setLoading(true);
             try {
                     const [mainProfile, teacherProfile] = await Promise.all([
-                        fetchTeacherMainProfile(globId, token),
-                        fetchTeacherProfile(globId, token),
+                        fetchTeacherMainProfile(globId, token, backendDomain),
+                        fetchTeacherProfile(globId, token, backendDomain),
                     ]);
                     
                     setProfileData({ mainProfile, teacherProfile});
@@ -88,8 +88,8 @@ export default function StudentExpandedAdmin() {
 }
 
 // Functions to fetch profile data based on user's role
-async function fetchTeacherMainProfile(userId, token) {
-    const response = await fetch(`http://adorable-forgiveness-production.up.railway.app/api/profile/get/${userId}`, {
+async function fetchTeacherMainProfile(userId, token, backendDomain) {
+    const response = await fetch(`http://${backendDomain}/api/profile/get/${userId}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -100,8 +100,8 @@ async function fetchTeacherMainProfile(userId, token) {
     return await response.json();
 }
 
-async function fetchTeacherProfile(userId, token) {
-    const response = await fetch(`http://adorable-forgiveness-production.up.railway.app/api/teacher/profile/get/${userId}`, {
+async function fetchTeacherProfile(userId, token, backendDomain) {
+    const response = await fetch(`http://${backendDomain}/api/teacher/profile/get/${userId}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }

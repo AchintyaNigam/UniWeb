@@ -6,7 +6,7 @@ import './SignUpR.css';
 
 import logo2 from "./../assets/logo2.png";
 
-export default function StudentSignUp()
+export default function StudentSignUp({backendDomain})
 {
     const [loading, setLoading] = useState(false);
     //profile
@@ -30,10 +30,10 @@ export default function StudentSignUp()
     const handleSubmit = async () => {
         setLoading(true);
         try {
-            const userId = await sendFirstRequest();
+            const userId = await sendFirstRequest(backendDomain);
             console.log(userId);
-            await sendSecondRequest(userId);
-            await sendThirdRequest(userId);
+            await sendSecondRequest(userId, backendDomain);
+            await sendThirdRequest(userId, backendDomain);
             alert("Registration successful");
             navigate("/");
         } catch (error) {
@@ -44,8 +44,8 @@ export default function StudentSignUp()
         }
     };
 
-    const sendFirstRequest = async () => {
-        const response = await fetch("http://adorable-forgiveness-production.up.railway.app/api/profile/post", {
+    const sendFirstRequest = async (backendDomain) => {
+        const response = await fetch(`http://${backendDomain}/api/profile/post`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -64,8 +64,8 @@ export default function StudentSignUp()
         return data.userId;
     };
 
-    const sendSecondRequest = async (userId) => {
-        await fetch("http://adorable-forgiveness-production.up.railway.app/api/student/profile/post", {
+    const sendSecondRequest = async (userId, backendDomain) => {
+        await fetch(`http://${backendDomain}/api/student/profile/post`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -78,8 +78,8 @@ export default function StudentSignUp()
         });
     };
 
-    const sendThirdRequest = async (userId) => {
-        await fetch("http://adorable-forgiveness-production.up.railway.app/api/student/address/post", {
+    const sendThirdRequest = async (userId, backendDomain) => {
+        await fetch(`http://${backendDomain}/api/student/address/post`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

@@ -8,7 +8,7 @@ import Forbidden from "./Forbidden";
 import './Profile.css';
 import './popup.css';
 
-export default function MarksStudent() {
+export default function MarksStudent({backendDomain}) {
     // State to store the marks data
     const [marks, setMarks] = useState([]);
 
@@ -21,7 +21,7 @@ export default function MarksStudent() {
         setLoading(true);
         try {
             // Make the API call to fetch marks data
-            const response = await fetch(`http://adorable-forgiveness-production.up.railway.app/api/student/marks/get/${userId}`, {
+            const response = await fetch(`http://${backendDomain}/api/student/marks/get/${userId}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

@@ -7,7 +7,7 @@ import './SignUpR.css';
 
 import logo2 from "./../assets/logo2.png";
 
-export default function StudentSignUp()
+export default function TeacherSignUp({backendDomain})
 {
     const [loading, setLoading] = useState(false);
     //profile
@@ -24,8 +24,8 @@ export default function StudentSignUp()
     const handleSubmit = async () => {
         setLoading(true);
         try {
-            const userId = await sendFirstRequest();
-            await sendSecondRequest(userId);
+            const userId = await sendFirstRequest(backendDomain);
+            await sendSecondRequest(userId, backendDomain);
             alert("Registration successful");
             navigate("/");
         } catch (error) {
@@ -36,8 +36,8 @@ export default function StudentSignUp()
         }
     };
 
-    const sendFirstRequest = async () => {
-        const response = await fetch("http://adorable-forgiveness-production.up.railway.app/api/profile/post", {
+    const sendFirstRequest = async (backendDomain) => {
+        const response = await fetch(`http://${backendDomain}/api/profile/post`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -55,8 +55,8 @@ export default function StudentSignUp()
         return data.userId;
     };
 
-    const sendSecondRequest = async (userId) => {
-        await fetch("http://adorable-forgiveness-production.up.railway.app/api/teacher/profile/post", {
+    const sendSecondRequest = async (userId, backendDomain) => {
+        await fetch(`http://${backendDomain}/api/teacher/profile/post`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

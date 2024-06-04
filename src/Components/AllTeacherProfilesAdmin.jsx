@@ -6,7 +6,7 @@ import Forbidden from "./Forbidden";
 
 import './Profile.css';
 
-export default function AllTeacherProfilesAdmin() {
+export default function AllTeacherProfilesAdmin({backendDomain}) {
     const [teacherProfiles, setTeacherProfiles] = useState([]);
     const { token, role, userId } = useGlobalContext();
     const [loading, setLoading] = useState(false);
@@ -17,7 +17,7 @@ export default function AllTeacherProfilesAdmin() {
         const fetchTeacherProfiles = async () => {
             setLoading(true);
             try {
-                const response = await fetch('http://adorable-forgiveness-production.up.railway.app/api/teacher/profile/get', {
+                const response = await fetch(`http://${backendDomain}/api/teacher/profile/get`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -28,7 +28,7 @@ export default function AllTeacherProfilesAdmin() {
                 const profiles = await response.json();
                 // Fetch additional details for each student profile
                 const profilesWithDetails = await Promise.all(profiles.map(async profile => {
-                    const detailResponse = await fetch(`http://adorable-forgiveness-production.up.railway.app/api/profile/get/${profile.userId}`, {
+                    const detailResponse = await fetch(`http://${backendDomain}/api/profile/get/${profile.userId}`, {
                         headers: {
                             Authorization: `Bearer ${token}`
                         }

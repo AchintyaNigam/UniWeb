@@ -10,7 +10,7 @@ import './SignUpR.css';
 import './LoginBox.css';
 
 
-export default function EditStudentProfileAdmin(){
+export default function EditStudentProfileAdmin({backendDomain}){
     const { globId } = useParams();
 
     const [rollNumber, setrollNumber] = useState("");
@@ -27,7 +27,7 @@ export default function EditStudentProfileAdmin(){
         const fetchProfileData = async () => {
             try {
                 // Make request based on role
-                    const studentProfile = await fetchStudentProfile(globId, token);
+                    const studentProfile = await fetchStudentProfile(globId, token, backendDomain);
                     
        
                     setrollNumber(studentProfile.rollNumber);
@@ -50,8 +50,8 @@ export default function EditStudentProfileAdmin(){
         return <Forbidden />;
     }
 
-    const sendFirstRequest = async () => {
-        const response = await fetch(`http://adorable-forgiveness-production.up.railway.app/api/student/profile/update/${globId}`, {
+    const sendFirstRequest = async (backendDomain) => {
+        const response = await fetch(`http://${backendDomain}/api/student/profile/update/${globId}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -69,7 +69,7 @@ export default function EditStudentProfileAdmin(){
     const handleSubmit = async () => {
         setLoading(true);
         try {
-            await sendFirstRequest();
+            await sendFirstRequest(backendDomain);
             alert("successfully updated");
             navigate(`/studentexpandedadmin/${globId}`);
         } catch (error) {
@@ -119,8 +119,8 @@ export default function EditStudentProfileAdmin(){
     )
 }
 
-async function fetchStudentProfile(userId, token) {
-    const response = await fetch(`http://adorable-forgiveness-production.up.railway.app/api/student/profile/get/${userId}`, {
+async function fetchStudentProfile(userId, token, backendDomain) {
+    const response = await fetch(`http://${backendDomain}/api/student/profile/get/${userId}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }

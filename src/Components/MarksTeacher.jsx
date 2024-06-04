@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import './Profile.css';
 import './popup.css';
 
-export default function MarksTeacher() {
+export default function MarksTeacher({backendDomain}) {
     const [marks, setMarks] = useState([]);
     const {token, role, userId} = useGlobalContext();
     const [loading, setLoading] = useState(false);
@@ -24,7 +24,7 @@ export default function MarksTeacher() {
             setLoading(true);
             try {
                 // Make the API call to fetch marks data
-                const response = await fetch(`http://adorable-forgiveness-production.up.railway.app/api/student/marks/get`, {
+                const response = await fetch(`http://${backendDomain}/api/student/marks/get`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }

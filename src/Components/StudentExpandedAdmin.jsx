@@ -11,7 +11,7 @@ import EditButton from "./../assets/edit_button.png";
 
 import './Profile.css';
 
-export default function StudentExpandedAdmin() {
+export default function StudentExpandedAdmin({backendDomain}) {
     const { globId } = useParams();
     const { token, role, userId } = useGlobalContext();
     const [profileData, setProfileData] = useState(null);
@@ -24,9 +24,9 @@ export default function StudentExpandedAdmin() {
             setLoading(true);
             try {
                     const [mainProfile, studentProfile, address] = await Promise.all([
-                        fetchStudentMainProfile(globId, token),
-                        fetchStudentProfile(globId, token),
-                        fetchStudentAddress(globId, token)
+                        fetchStudentMainProfile(globId, token, backendDomain),
+                        fetchStudentProfile(globId, token, backendDomain),
+                        fetchStudentAddress(globId, token, backendDomain)
                     ]);
                     
                     setProfileData({ mainProfile, studentProfile, address });
@@ -102,8 +102,8 @@ export default function StudentExpandedAdmin() {
 }
 
 // Functions to fetch profile data based on user's role
-async function fetchStudentMainProfile(userId, token) {
-    const response = await fetch(`http://adorable-forgiveness-production.up.railway.app/api/profile/get/${userId}`, {
+async function fetchStudentMainProfile(userId, token, backendDomain) {
+    const response = await fetch(`http://${backendDomain}/api/profile/get/${userId}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -114,8 +114,8 @@ async function fetchStudentMainProfile(userId, token) {
     return await response.json();
 }
 
-async function fetchStudentProfile(userId, token) {
-    const response = await fetch(`http://adorable-forgiveness-production.up.railway.app/api/student/profile/get/${userId}`, {
+async function fetchStudentProfile(userId, token, backendDomain) {
+    const response = await fetch(`http://${backendDomain}/api/student/profile/get/${userId}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -126,8 +126,8 @@ async function fetchStudentProfile(userId, token) {
     return await response.json();
 }
 
-async function fetchStudentAddress(userId, token) {
-    const response = await fetch(`http://adorable-forgiveness-production.up.railway.app/api/student/address/get/${userId}`, {
+async function fetchStudentAddress(userId, token, backendDomain) {
+    const response = await fetch(`http://${backendDomain}/api/student/address/get/${userId}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }

@@ -36,12 +36,14 @@ import './App.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { GlobalProvider } from './GlobalContext';
 
-const backendDomain = "adorable-forgiveness-production.up.railway.app";
+//const backendDomain = "adorable-forgiveness-production.up.railway.app";
+const backendDomain = "127.0.0.1:8080";
+
 
 console.log(backendDomain)
 const router = createBrowserRouter([
   { path: '/', element: <App backendDomain={backendDomain}/> },
-  { path: '/signup', element: <SignUp backendDomain={backendDomain}/> },
+  { path: '/signup', element: <SignUp /> },
   { path: '/studentsignup', element: <StudentSignUp backendDomain={backendDomain}/> },
   { path: '/teachersignup', element: <TeacherSignUp backendDomain={backendDomain}/> },
   { path: '/homestudent', element: <HomeStudent /> },
@@ -53,8 +55,8 @@ const router = createBrowserRouter([
   { path: '/allstudentprofiles', element: <AllStudentProfiles backendDomain={backendDomain}/> },
   { path: '/allstudentprofilesadmin', element: <AllStudentProfilesAdmin backendDomain={backendDomain}/> },
   { path: '/allteacherprofilesadmin', element: <AllTeacherProfilesAdmin backendDomain={backendDomain}/> },
-  { path: '/forbidden', element: <Forbidden backendDomain={backendDomain}/> },
-  { path: '/editprofile', element: <EditProfile backendDomain/>},
+  { path: '/forbidden', element: <Forbidden /> },
+  { path: '/editprofile', element: <EditProfile backendDomain={backendDomain}/>},
   { path: '/editprofileadmin/:globId', element: <EditProfileAdmin backendDomain={backendDomain}/>},
   { path: '/editstudentprofile', element: <EditStudentProfile backendDomain={backendDomain}/> },
   { path: '/editstudentprofileadmin/:globId', element: <EditStudentProfileAdmin backendDomain={backendDomain}/> },

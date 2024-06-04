@@ -8,7 +8,7 @@ import './SignUpR.css';
 import './LoginBox.css';
 
 
-export default function EditStudentAddress(){
+export default function EditStudentAddress({backendDomain}){
     const [city, setCity] = useState("");
     const [street, setStreet] = useState("");
     const [zipCode, setZipCode] = useState("");
@@ -25,7 +25,7 @@ export default function EditStudentAddress(){
         const fetchProfileData = async () => {
             try {
                 // Make request based on role
-                    const studentAddress = await fetchStudentAddress(userId, token);
+                    const studentAddress = await fetchStudentAddress(userId, token, backendDomain);
                     
        
                     setCity(studentAddress.city);
@@ -51,7 +51,7 @@ export default function EditStudentAddress(){
     }
 
     const sendFirstRequest = async () => {
-        const response = await fetch(`http://adorable-forgiveness-production.up.railway.app/api/student/address/update/${userId}`, {
+        const response = await fetch(`http://${backendDomain}/api/student/address/update/${userId}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -131,8 +131,8 @@ export default function EditStudentAddress(){
     )
 }
 
-async function fetchStudentAddress(userId, token) {
-    const response = await fetch(`http://adorable-forgiveness-production.up.railway.app/api/student/address/get/${userId}`, {
+async function fetchStudentAddress(userId, token, backendDomain) {
+    const response = await fetch(`http://${backendDomain}/api/student/address/get/${userId}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }

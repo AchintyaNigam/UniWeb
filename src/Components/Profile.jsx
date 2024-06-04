@@ -10,7 +10,7 @@ import EditButton from "./../assets/edit_button.png";
 
 import './Profile.css';
 
-export default function Profile() {
+export default function Profile({backendDomain}) {
     const { token, role, userId } = useGlobalContext();
     const [profileData, setProfileData] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -24,16 +24,16 @@ export default function Profile() {
                 // Make request based on role
                 if (role === "student") {
                     const [mainProfile, studentProfile, address] = await Promise.all([
-                        fetchStudentMainProfile(userId, token),
-                        fetchStudentProfile(userId, token),
-                        fetchStudentAddress(userId, token)
+                        fetchStudentMainProfile(userId, token, backendDomain),
+                        fetchStudentProfile(userId, token, backendDomain),
+                        fetchStudentAddress(userId, token, backendDomain)
                     ]);
                     
                     setProfileData({ mainProfile, studentProfile, address });
                 } else if (role === "teacher") {
                     const [mainProfile, teacherProfile] = await Promise.all([
-                        fetchTeacherMainProfile(userId, token),
-                        fetchTeacherProfile(userId, token)
+                        fetchTeacherMainProfile(userId, token, backendDomain),
+                        fetchTeacherProfile(userId, token, backendDomain)
                     ]);
                     setProfileData({ mainProfile, teacherProfile });
                 }
@@ -133,8 +133,8 @@ export default function Profile() {
 }
 
 // Functions to fetch profile data based on user's role
-async function fetchStudentMainProfile(userId, token) {
-    const response = await fetch(`http://adorable-forgiveness-production.up.railway.app/api/profile/get/${userId}`, {
+async function fetchStudentMainProfile(userId, token, backendDomain) {
+    const response = await fetch(`http://${backendDomain}/api/profile/get/${userId}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -145,8 +145,8 @@ async function fetchStudentMainProfile(userId, token) {
     return await response.json();
 }
 
-async function fetchStudentProfile(userId, token) {
-    const response = await fetch(`http://adorable-forgiveness-production.up.railway.app/api/student/profile/get/${userId}`, {
+async function fetchStudentProfile(userId, token, backendDomain) {
+    const response = await fetch(`http://${backendDomain}/api/student/profile/get/${userId}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -157,8 +157,8 @@ async function fetchStudentProfile(userId, token) {
     return await response.json();
 }
 
-async function fetchStudentAddress(userId, token) {
-    const response = await fetch(`http://adorable-forgiveness-production.up.railway.app/api/student/address/get/${userId}`, {
+async function fetchStudentAddress(userId, token, backendDomain) {
+    const response = await fetch(`http://${backendDomain}/api/student/address/get/${userId}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -169,8 +169,8 @@ async function fetchStudentAddress(userId, token) {
     return await response.json();
 }
 
-async function fetchTeacherMainProfile(userId, token) {
-    const response = await fetch(`http://adorable-forgiveness-production.up.railway.app/api/profile/get/${userId}`, {
+async function fetchTeacherMainProfile(userId, token, backendDomain) {
+    const response = await fetch(`http://${backendDomain}/api/profile/get/${userId}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
@@ -181,8 +181,8 @@ async function fetchTeacherMainProfile(userId, token) {
     return await response.json();
 }
 
-async function fetchTeacherProfile(userId, token) {
-    const response = await fetch(`http://adorable-forgiveness-production.up.railway.app/api/teacher/profile/get/${userId}`, {
+async function fetchTeacherProfile(userId, token, backendDomain) {
+    const response = await fetch(`http://${backendDomain}/api/teacher/profile/get/${userId}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }

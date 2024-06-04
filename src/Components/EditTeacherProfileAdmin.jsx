@@ -10,7 +10,7 @@ import './SignUpR.css';
 import './LoginBox.css';
 
 
-export default function EditTeacherProfileAdmin(){
+export default function EditTeacherProfileAdmin({backendDomain}){
     const { globId } = useParams();
 
     const [department, setDepartment] = useState("");
@@ -26,7 +26,7 @@ export default function EditTeacherProfileAdmin(){
         const fetchProfileData = async () => {
             try {
                 // Make request based on role
-                    const teacherProfile = await fetchStudentProfile(globId, token);
+                    const teacherProfile = await fetchStudentProfile(globId, token, backendDomain);
                     
        
                     setDepartment(teacherProfile.department);
@@ -49,7 +49,7 @@ export default function EditTeacherProfileAdmin(){
     }
 
     const sendFirstRequest = async () => {
-        const response = await fetch(`http://adorable-forgiveness-production.up.railway.app/api/teacher/profile/update/${globId}`, {
+        const response = await fetch(`http://${backendDomain}/api/teacher/profile/update/${globId}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -106,8 +106,8 @@ export default function EditTeacherProfileAdmin(){
     )
 }
 
-async function fetchStudentProfile(userId, token) {
-    const response = await fetch(`http://adorable-forgiveness-production.up.railway.app/api/teacher/profile/get/${userId}`, {
+async function fetchStudentProfile(userId, token, backendDomain) {
+    const response = await fetch(`http://${backendDomain}/api/teacher/profile/get/${userId}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
