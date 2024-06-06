@@ -26,20 +26,8 @@ export default function AllStudentProfiles({backendDomain}) {
                     throw new Error("Failed to fetch student profiles");
                 }
                 const profiles = await response.json();
-                // Fetch additional details for each student profile
-                const profilesWithDetails = await Promise.all(profiles.map(async profile => {
-                    const detailResponse = await fetch(`http://${backendDomain}/api/profile/get/${profile.userId}`, {
-                        headers: {
-                            Authorization: `Bearer ${token}`
-                        }
-                    });
-                    if (!detailResponse.ok) {
-                        throw new Error(`Failed to fetch details for profile ${profile.id}`);
-                    }
-                    const details = await detailResponse.json();
-                    return { ...profile, details };
-                }));
-                setStudentProfiles(profilesWithDetails);
+                
+                setStudentProfiles(profiles);
             } catch (error) {
                 console.error("Error fetching student profiles:", error);
             } finally {
@@ -78,8 +66,7 @@ export default function AllStudentProfiles({backendDomain}) {
                                     {studentProfiles.map((profile) => (
                                         <div className="tabElements" key={profile.id}>
                                             <span className="tds"><strong>Role Number:</strong> {profile.rollNumber}</span>
-                                            <span className="tds"><strong>Name:</strong> {profile.details.fullName}</span>
-                                            <span className="tds"><strong>Email:</strong> {profile.details.email}</span>
+                                            <span className="tds"><strong>Branch:</strong> {profile.branch}</span>
                                             <a className="moreLinks" onClick={()=>handleMore(profile.userId)}>More</a>
                                         </div>
                                     ))}
