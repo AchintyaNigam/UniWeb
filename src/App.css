@@ -39,3 +39,16 @@ body{
 
 .link:hover {--_p: 100%}
 
+.deleteButton{
+  background-color: Red;
+  color: var(--light);
+  border-radius: 5%;
+  padding: 10px;
+  transition: 1s;
+
+}
+.deleteButton:hover{
+  cursor: pointer;
+  scale: 105%;
+  box-shadow: #fff 20px 50px 20px;
+}
