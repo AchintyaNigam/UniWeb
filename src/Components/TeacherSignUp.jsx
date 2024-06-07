@@ -15,7 +15,7 @@ export default function TeacherSignUp({backendDomain})
     const [username, setUsername] = useState("");
     const [fullName, setFullName] = useState("");
     const [email, setEmail] = useState("");
-    const [birthday, setBirthday] = useState("");
+    const [birthdate, setBirthday] = useState("");
 
     //teacherProfile
     const [department, setDepartment] = useState("");
@@ -48,7 +48,7 @@ export default function TeacherSignUp({backendDomain})
                 role: "teacher",
                 fullName,
                 email,
-                birthday
+                birthdate
             })
         });
         const data = await response.json();

@@ -14,10 +14,10 @@ export default function StudentSignUp({backendDomain})
     const [username, setUsername] = useState("");
     const [fullName, setFullName] = useState("");
     const [email, setEmail] = useState("");
-    const [birthday, setBirthday] = useState("");
+    const [birthdate, setBirthday] = useState("");
 
     //studentProfile
-    const [roleNumber, setRollNumber] = useState("");
+    const [rollNumber, setRollNumber] = useState("");
     const [branch, setBranch] = useState("");
 
     //studentAddress
@@ -56,7 +56,7 @@ export default function StudentSignUp({backendDomain})
                 role: "student",
                 fullName,
                 email,
-                birthday
+                birthdate
             })
         });
         const data = await response.json();
@@ -73,7 +73,7 @@ export default function StudentSignUp({backendDomain})
             body: JSON.stringify({
                 userId,
                 branch,
-                roleNumber
+                rollNumber
             })
         });
     };
