@@ -3,6 +3,7 @@ import React from "react";
 import NavbarAdmin from "./NavbarAdmin";
 import Forbidden from "./Forbidden";
 import { useGlobalContext } from './../GlobalContext';
+import { Link } from "react-router-dom";
 
 import './Home.css'
 
@@ -17,8 +18,8 @@ export default function HomeAdmin()
             <div className="homeMain">
                 <span>Welcome</span>
                 <div className="homeButtonsContainer">
-                <div className="homeButtons"><a className="link" href="/allteacherprofilesadmin">Teachers</a></div>
-                <div className="homeButtons"><a className="link" href="/allstudentprofilesadmin">Students</a></div>
+                <div className="homeButtons"><Link className="link" to="/allteacherprofilesadmin">Teachers</Link></div>
+                <div className="homeButtons"><Link className="link" to="/allstudentprofilesadmin">Students</Link></div>
                 </div>
             </div>
             </>

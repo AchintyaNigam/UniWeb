@@ -108,7 +108,7 @@
     justify-content: center;
   }
   
-  .signUp a{
+  .signUp span{
     color: var(--dark);
     text-decoration: none;
   }

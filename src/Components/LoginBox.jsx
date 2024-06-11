@@ -44,6 +44,11 @@ export default function LoginBox({backendDomain})
         }
     };
 
+    const handleSignup = () =>
+        {
+            navigate("/signup");
+        }
+
     async function login(username, password, backendDomain) {
         try {
             console.log(backendDomain)
@@ -103,7 +108,7 @@ export default function LoginBox({backendDomain})
             </div>
             
             <div className="signUp">
-                <a className="link" id="signUpButton" href="signup">SignUp</a> 
+                <span className="link" id="signUpButton" onClick={()=>handleSignup()}>SignUp</span> 
             </div>  
 
             <div className="inputBox" id="submit"> 

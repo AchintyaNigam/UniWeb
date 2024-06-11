@@ -3,6 +3,7 @@ import React from "react";
 import NavbarTeacher from "./NavbarTeacher";
 import Forbidden from "./Forbidden";
 import { useGlobalContext } from './../GlobalContext';
+import { Link } from "react-router-dom";
 
 import './Home.css'
 
@@ -17,9 +18,9 @@ export default function HomeTeacher()
             <div className="homeMain">
                 <span>Welcome</span>
                 <div className="homeButtonsContainer">
-                <div className="homeButtons"><a className="link" href="/profile">Profile</a></div>
-                <div className="homeButtons"><a className="link" href="/allstudentprofiles">Students</a></div>
-                <div className="homeButtons"><a className="link" href="/marksteacher">Marks</a></div>
+                <div className="homeButtons"><Link className="link" to="/profile">Profile</Link></div>
+                <div className="homeButtons"><Link className="link" to="/allstudentprofiles">Students</Link></div>
+                <div className="homeButtons"><Link className="link" to="/marksteacher">Marks</Link></div>
                 </div>
             </div>
             </>

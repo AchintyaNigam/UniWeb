@@ -1,25 +1,29 @@
 import React from "react";
 import { useGlobalContext } from './../GlobalContext';
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import './Navbar.css'
 export default function Navbar  ()
 {
+    const navigate = useNavigate();
     const { updateGlobalState } = useGlobalContext();
     function logout(){
         updateGlobalState('','','');
+        navigate('/');
     }
      
     return (
         <div className="Navbar">
-            <a  className="link" href="/homestudent"><span className="Name">UniWeb</span></a>
+            <Link  className="link" to="/homestudent"><span className="Name">UniWeb</span></Link>
             <ul>
                 <li>
-                    <a className="link" href="/profile">Profile</a>
+                    <Link className="link" to="/profile">Profile</Link>
                 </li>
                 <li>
-                    <a className="link" href="/marksstudent">Marks</a>
+                    <Link className="link" to="/marksstudent">Marks</Link>
                 </li>
             </ul>
-            <a className="link" href="/" id="logout" onClick={logout}>Logout</a>
+            <span className="link" id="logout" onClick={logout}>Logout</span>
         </div>
     );
         

@@ -37,7 +37,7 @@ body{
   transition: 0.5s;
 }
 
-.link:hover {--_p: 100%}
+.link:hover {--_p: 100%; cursor: pointer;}
 
 .deleteButton{
   background-color: Red;
